@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { useAuth } from '@/contexts/AuthContext';
-import { Menu, X, User, LogOut } from 'lucide-react';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { Menu, X, User, LogOut } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,11 +17,15 @@ const Navbar = () => {
   const location = useLocation();
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Profile', href: '/Patient-Dashboard' },
-    { name: 'Doctors', href: '/doctors' },
-    ...(isAuthenticated ? [{ name: 'My Appointments', href: '/appointments' }] : []),
-    ...(user?.role === 'hospital' ? [{ name: 'Dashboard', href: '/dashboard' }] : []),
+    { name: "Home", href: "/" },
+    { name: "Profile", href: "/Patient-Dashboard" },
+    { name: "Hospital", href: "/hospital-dashboard" },
+    ...(isAuthenticated
+      ? [{ name: "My Appointments", href: "/appointments" }]
+      : []),
+    ...(user?.role === "hospital"
+      ? [{ name: "Dashboard", href: "/dashboard" }]
+      : []),
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -32,9 +36,12 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-3 group">
-              
-                <img src="/src/assets/logo.png" alt="AidPoint Logo" className="h-8 w-auto" />
-              
+              <img
+                src="/src/assets/logo.png"
+                alt="AidPoint Logo"
+                className="h-8 w-auto"
+              />
+
               <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
                 AidPoint
               </span>
@@ -49,8 +56,8 @@ const Navbar = () => {
                 to={item.href}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive(item.href)
-                    ? 'text-primary bg-primary/10'
-                    : 'text-muted-foreground hover:text-primary hover:bg-muted'
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-primary hover:bg-muted"
                 }`}
               >
                 {item.name}
@@ -64,13 +71,22 @@ const Navbar = () => {
             {isAuthenticated ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="flex items-center space-x-2">
+                  <Button
+                    variant="ghost"
+                    className="flex items-center space-x-2"
+                  >
                     <User className="h-4 w-4" />
                     <span>{user?.name}</span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48 bg-popover border shadow-medium">
-                  <DropdownMenuItem onClick={logout} className="text-destructive">
+                <DropdownMenuContent
+                  align="end"
+                  className="w-48 bg-popover border shadow-medium"
+                >
+                  <DropdownMenuItem
+                    onClick={logout}
+                    className="text-destructive"
+                  >
                     <LogOut className="h-4 w-4 mr-2" />
                     Logout
                   </DropdownMenuItem>
@@ -96,7 +112,11 @@ const Navbar = () => {
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </Button>
           </div>
         </div>
@@ -112,15 +132,15 @@ const Navbar = () => {
                 to={item.href}
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   isActive(item.href)
-                    ? 'text-primary bg-primary/10'
-                    : 'text-muted-foreground hover:text-primary hover:bg-muted'
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-primary hover:bg-muted"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            
+
             <div className="pt-4 border-t">
               {isAuthenticated ? (
                 <div className="space-y-2">

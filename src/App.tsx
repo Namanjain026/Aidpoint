@@ -16,6 +16,7 @@ import MyAppointments from "./pages/MyAppointments";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import PatientDashboard from "./pages/PatientDashboard";
+import HospitalDashboard from "./pages/HospitalDashboard";   // ✅ added
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
@@ -29,28 +30,29 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-1">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/hospitals" element={<HospitalList />} />
-                <Route path="/hospitals/:id" element={<HospitalDetails />} />
-                <Route path="/doctors" element={<DoctorList />} />
-                <Route path="/doctors/:id" element={<DoctorDetails />} />
-                <Route path="/appointments" element={<MyAppointments />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/patient-dashboard" element={<PatientDashboard />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Chatbot />
-          </div>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
+            <div className="min-h-screen flex flex-col">
+              <Navbar />
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/hospitals" element={<HospitalList />} />
+                  <Route path="/hospitals/:id" element={<HospitalDetails />} />
+                  <Route path="/doctors" element={<DoctorList />} />
+                  <Route path="/doctors/:id" element={<DoctorDetails />} />
+                  <Route path="/appointments" element={<MyAppointments />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/patient-dashboard" element={<PatientDashboard />} />
+                  <Route path="/hospital-dashboard" element={<HospitalDashboard />} /> {/* ✅ new */}
+                  <Route path="/register" element={<Register />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
+              <Chatbot />
+            </div>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
