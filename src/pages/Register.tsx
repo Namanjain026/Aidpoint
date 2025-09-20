@@ -99,12 +99,10 @@ const Register = () => {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center space-x-2 group">
-            <div className="bg-white p-3 rounded-lg group-hover:scale-105 transition-transform shadow-medium">
-              <Heart className="h-8 w-8 text-primary" />
+            <div className="bg-white p-2 rounded-lg">
+              <img src="/src/assets/logo.png" alt="AidPoint Logo" className="h-8 w-auto" />
             </div>
-            <span className="text-2xl font-bold text-white">
-              AidPoint
-            </span>
+            <span className="text-2xl font-bold text-white">AidPoint</span>
           </Link>
         </div>
 

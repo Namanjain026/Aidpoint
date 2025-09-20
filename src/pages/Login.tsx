@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Heart } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -38,7 +38,7 @@ const Login = () => {
 
       // role-based redirect
       if (role === "patient") {
-        navigate("/patient-dashboard");
+        navigate("/Patient-Dashboard");
       } else if (role === "hospital") {
         navigate("/hospital-dashboard");
       } else {
@@ -69,12 +69,10 @@ const Login = () => {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center space-x-2 group">
-            <div className="bg-white p-3 rounded-lg group-hover:scale-105 transition-transform shadow-medium">
-              <Heart className="h-8 w-8 text-primary" />
+            <div className="bg-white p-2 rounded-lg">
+              <img src="/src/assets/logo.png" alt="AidPoint Logo" className="h-8 w-auto" />
             </div>
-            <span className="text-2xl font-bold text-white">
-              AidPoint
-            </span>
+            <span className="text-2xl font-bold text-white">AidPoint</span>
           </Link>
         </div>
 
@@ -153,7 +151,7 @@ const Login = () => {
             </div>
 
             {/* Demo Accounts */}
-            <div className="mt-6 p-4 bg-muted rounded-lg">
+            {/* <div className="mt-6 p-4 bg-muted rounded-lg">
               <p className="text-sm font-medium mb-2">Demo Accounts:</p>
               <div className="space-y-2 text-xs text-muted-foreground">
                 <div>
@@ -163,7 +161,7 @@ const Login = () => {
                   <strong>Hospital:</strong> hospital@demo.com / password
                 </div>
               </div>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
 

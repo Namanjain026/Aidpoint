@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
-import { Heart, Menu, X, User, LogOut } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import {
   DropdownMenu,
@@ -18,7 +18,7 @@ const Navbar = () => {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Hospitals', href: '/hospitals' },
+    { name: 'Profile', href: '/Patient-Dashboard' },
     { name: 'Doctors', href: '/doctors' },
     ...(isAuthenticated ? [{ name: 'My Appointments', href: '/appointments' }] : []),
     ...(user?.role === 'hospital' ? [{ name: 'Dashboard', href: '/dashboard' }] : []),
@@ -31,10 +31,10 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="bg-gradient-hero p-2 rounded-lg group-hover:scale-105 transition-transform">
-                <Heart className="h-6 w-6 text-white" />
-              </div>
+            <Link to="/" className="flex items-center space-x-3 group">
+              
+                <img src="/src/assets/logo.png" alt="AidPoint Logo" className="h-8 w-auto" />
+              
               <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
                 AidPoint
               </span>

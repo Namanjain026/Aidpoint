@@ -5,6 +5,7 @@ interface AuthContextType {
   user: any;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  isAuthenticated: boolean; // ✅ added
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -12,19 +13,20 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<any>(null);
 
-  useEffect(() => {
-    // Get current user on mount
-    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+useEffect(() => {
+  // 1. Get the current user on page load
+  supabase.auth.getUser().then(({ data }) => setUser(data.user));
 
-    // Listen for auth state changes (login/logout)
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
+  // 2. Listen for auth state changes (login/logout)
+  const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    setUser(session?.user ?? null);
+  });
 
-    return () => {
-      listener.subscription.unsubscribe();
-    };
-  }, []);
+  return () => {
+    listener.subscription.unsubscribe();
+  };
+}, []);
+
 
   const login = async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -35,15 +37,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(data.user);
   };
 
+
+
+
   const logout = async () => {
     await supabase.auth.signOut();
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+  <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+    {children}
+  </AuthContext.Provider>
+
   );
 };
 

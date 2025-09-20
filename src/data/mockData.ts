@@ -46,6 +46,7 @@ export interface Review {
 }
 
 export interface Appointment {
+  patientId: any;
   id: string;
   doctorId: string;
   doctorName: string;
