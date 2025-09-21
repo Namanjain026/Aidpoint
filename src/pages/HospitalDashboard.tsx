@@ -209,14 +209,14 @@ const HospitalDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-muted/30">
+    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-indigo-300 to-purple-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">
             Hospital Dashboard
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-gray-700">
             Manage your doctors, patients, insurance, and facilities from one place.
           </p>
         </div>
@@ -224,11 +224,11 @@ const HospitalDashboard = () => {
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {stats.map((stat, idx) => (
-            <Card key={idx}>
+            <Card key={idx} className="backdrop-blur-xl bg-white/80 border border-blue-100">
               <CardContent className="p-6 text-center">
                 <stat.icon className={`h-8 w-8 mx-auto mb-2 ${stat.color}`} />
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-2xl font-bold text-gray-800">{stat.value}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
               </CardContent>
             </Card>
           ))}
@@ -237,10 +237,10 @@ const HospitalDashboard = () => {
         {/* Doctors & Appointments */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Doctors */}
-          <Card>
+          <Card className="backdrop-blur-xl bg-white/80 border border-blue-100">
             <CardHeader className="flex justify-between items-center">
-              <CardTitle>Doctors</CardTitle>
-              <Button size="sm" variant="outline">
+              <CardTitle className="text-gray-800">Doctors</CardTitle>
+              <Button size="sm" variant="outline" className="border-blue-200 text-blue-700 hover:bg-blue-50">
                 <Plus className="h-4 w-4 mr-1" /> Add Doctor
               </Button>
             </CardHeader>

@@ -94,13 +94,11 @@ const Home = () => {
     }
   ];
 
- const themeClasses = 'bg-gradient-to-br from-blue-200 via-indigo-300 to-purple-300 text-neutral-foreground';
+ const themeClasses = 'bg-gradient-to-br from-blue-200 via-indigo-300 to-purple-300';
 
-
-  const cardClasses = 'backdrop-blur-xl bg-neutral-card border border-neutral-border';
-
-  const textClasses = 'text-neutral-foreground';
-  const headingClasses = 'text-neutral-foreground';
+  const cardClasses = 'backdrop-blur-xl bg-white/80 border border-blue-100';
+  const textClasses = 'text-gray-700';
+  const headingClasses = 'text-gray-800';
 
   return (
     <div className={`min-h-screen transition-all duration-500 ${themeClasses} relative overflow-x-hidden`}>

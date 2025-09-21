@@ -30,7 +30,7 @@ const Navbar = () => {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Profile", href: "/Patient-Dashboard" },
-    { name: "Hospital", href: "/hospital-dashboard" },
+    { name: "Hospital", href: "/HospitalDashboard" },
     ...(isAuthenticated
       ? [{ name: "My Appointments", href: "/appointments" }]
       : []),

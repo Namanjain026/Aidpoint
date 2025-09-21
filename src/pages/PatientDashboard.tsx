@@ -82,9 +82,9 @@ const PatientDashboard = () => {
     }
   ]);
 
-  // Theme classes matching Home.tsx
-  const themeClasses = 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 text-neutral-foreground';
-  const cardClasses = 'bg-white border border-gray-200 shadow-sm rounded-xl';
+  // Fixed theme classes (not affected by dark mode)
+  const themeClasses = 'bg-gradient-to-br from-blue-200 via-indigo-300 to-purple-300';
+  const cardClasses = 'backdrop-blur-xl bg-white/80 border border-blue-100 shadow-sm rounded-xl';
   const textClasses = 'text-gray-700';
   const headingClasses = 'text-gray-800';
 
@@ -235,7 +235,49 @@ const PatientDashboard = () => {
   ];
 
   return (
-    <div className={`min-h-screen ${themeClasses} relative overflow-x-hidden`}>
+    <div className={`min-h-screen transition-all duration-500 ${themeClasses} relative overflow-x-hidden`}>
+      {/* Medical background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Medical cross pattern */}
+        <div className="absolute right-0 bottom-0 w-full h-full opacity-[0.05] overflow-hidden">
+          <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMaxYMax slice" className="text-blue-600">
+            {/* Large medical crosses */}
+            <g fill="currentColor">
+              <rect x="900" y="100" width="60" height="200" />
+              <rect x="840" y="160" width="180" height="60" />
+              <rect x="600" y="300" width="40" height="150" />
+              <rect x="560" y="340" width="120" height="40" />
+              <rect x="300" y="450" width="50" height="180" />
+              <rect x="250" y="510" width="150" height="50" />
+            </g>
+            {/* Medical symbols */}
+            <g fill="currentColor" opacity="0.3">
+              <circle cx="700" cy="200" r="30" />
+              <circle cx="700" cy="200" r="20" fill="none" stroke="currentColor" strokeWidth="2" />
+              <path d="M690,200 L710,200 M700,190 L700,210" stroke="currentColor" strokeWidth="3" />
+              <circle cx="400" cy="600" r="25" />
+              <circle cx="400" cy="600" r="15" fill="none" stroke="currentColor" strokeWidth="2" />
+              <path d="M392,600 L408,600 M400,592 L400,608" stroke="currentColor" strokeWidth="2" />
+            </g>
+          </svg>
+        </div>
+
+        {/* Animated floating medical elements */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-gradient-to-r from-blue-300/20 to-purple-300/20 animate-pulse"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              width: `${Math.random() * 200 + 50}px`,
+              height: `${Math.random() * 200 + 50}px`,
+              animationDelay: `${i * 0.5}s`,
+            }}
+          />
+        ))}
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-6 relative z-10">
         {/* Header */}
         <div className={`mb-6 p-6 ${cardClasses}`}>
@@ -285,24 +327,24 @@ const PatientDashboard = () => {
         {/* Quick Actions */}
         <AnimatedSection animation="scale-in" delay={0.1}>
           <div className={`${cardClasses} p-5 mb-6`}>
-          <h3 className="font-semibold text-lg mb-4">Quick Actions</h3>
+          <h3 className="font-semibold text-lg mb-4 text-gray-800">Quick Actions</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <Button 
-              className="flex flex-col h-auto py-4 px-2" 
+              className="flex flex-col h-auto py-4 px-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0" 
               onClick={() => setIsBookAppointmentOpen(true)}
             >
               <Plus className="h-5 w-5 mb-1" />
               <span className="text-xs">Book Appointment</span>
             </Button>
-            <Button variant="outline" className="flex flex-col h-auto py-4 px-2">
+            <Button className="flex flex-col h-auto py-4 px-2 bg-white hover:bg-blue-50 text-gray-700 border border-blue-200 hover:border-blue-300">
               <FileText className="h-5 w-5 mb-1" />
               <span className="text-xs">View Records</span>
             </Button>
-            <Button variant="outline" className="flex flex-col h-auto py-4 px-2">
+            <Button className="flex flex-col h-auto py-4 px-2 bg-white hover:bg-blue-50 text-gray-700 border border-blue-200 hover:border-blue-300">
               <Download className="h-5 w-5 mb-1" />
               <span className="text-xs">Download Reports</span>
             </Button>
-            <Button variant="outline" className="flex flex-col h-auto py-4 px-2">
+            <Button className="flex flex-col h-auto py-4 px-2 bg-white hover:bg-blue-50 text-gray-700 border border-blue-200 hover:border-blue-300">
               <User className="h-5 w-5 mb-1" />
               <span className="text-xs">My Profile</span>
             </Button>
@@ -314,8 +356,12 @@ const PatientDashboard = () => {
         {upcomingAppointments.length > 0 && (
           <div className={`${cardClasses} p-5 mb-6`}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-semibold text-lg">Upcoming Appointments</h3>
-              <Button variant="ghost" size="sm" onClick={() => setActiveTab('appointments')}>
+              <h3 className="font-semibold text-lg text-gray-800">Upcoming Appointments</h3>
+              <Button 
+                className="bg-transparent hover:bg-blue-50 text-blue-600 hover:text-blue-700 border-0 px-3 py-1" 
+                size="sm" 
+                onClick={() => setActiveTab('appointments')}
+              >
                 View All <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </div>
@@ -347,20 +393,20 @@ const PatientDashboard = () => {
         <AnimatedSection animation="bounce-in" delay={0.2}>
           <div className={`${cardClasses} p-5`}>
           <Tabs defaultValue="appointments" value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-6 bg-white/50 backdrop-blur-sm p-1 rounded-lg">
-              <TabsTrigger value="appointments" className="text-xs sm:text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200">
+            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-6 bg-white/80 backdrop-blur-sm p-1 rounded-lg border border-blue-100">
+              <TabsTrigger value="appointments" className="text-xs sm:text-sm text-gray-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 hover:bg-blue-50 hover:text-blue-700">
                 <span className="hidden sm:inline">Appointments</span>
                 <span className="sm:hidden">Appts</span>
               </TabsTrigger>
-              <TabsTrigger value="doctors" className="text-xs sm:text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200">
+              <TabsTrigger value="doctors" className="text-xs sm:text-sm text-gray-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 hover:bg-blue-50 hover:text-blue-700">
                 <span className="hidden sm:inline">Find Doctors</span>
                 <span className="sm:hidden">Doctors</span>
               </TabsTrigger>
-              <TabsTrigger value="history" className="text-xs sm:text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200">
+              <TabsTrigger value="history" className="text-xs sm:text-sm text-gray-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 hover:bg-blue-50 hover:text-blue-700">
                 <span className="hidden sm:inline">Medical History</span>
                 <span className="sm:hidden">History</span>
               </TabsTrigger>
-              <TabsTrigger value="profile" className="text-xs sm:text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200">
+              <TabsTrigger value="profile" className="text-xs sm:text-sm text-gray-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 hover:bg-blue-50 hover:text-blue-700">
                 <span className="hidden sm:inline">Profile</span>
                 <span className="sm:hidden">Profile</span>
               </TabsTrigger>
@@ -483,10 +529,19 @@ const PatientDashboard = () => {
                           />
                         </div>
                         <DialogFooter>
-                          <Button type="button" variant="outline" onClick={() => setIsBookAppointmentOpen(false)}>
+                          <Button 
+                            type="button" 
+                            className="bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 hover:border-gray-400" 
+                            onClick={() => setIsBookAppointmentOpen(false)}
+                          >
                             Cancel
                           </Button>
-                          <Button type="submit">Book Appointment</Button>
+                          <Button 
+                            type="submit" 
+                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
+                          >
+                            Book Appointment
+                          </Button>
                         </DialogFooter>
                       </form>
                     )}
@@ -566,7 +621,7 @@ const PatientDashboard = () => {
                           <div className="flex justify-end pt-2 border-t border-gray-200">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                <Button className="h-8 w-8 p-0 bg-transparent hover:bg-blue-50 text-gray-600 hover:text-blue-700 border-0">
                                   <MoreHorizontal className="h-4 w-4" />
                                 </Button>
                               </DropdownMenuTrigger>
@@ -642,7 +697,7 @@ const PatientDashboard = () => {
                                 <TableCell className="text-right">
                                   <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
-                                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                      <Button className="h-8 w-8 p-0 bg-transparent hover:bg-blue-50 text-gray-600 hover:text-blue-700 border-0">
                                         <MoreHorizontal className="h-4 w-4" />
                                       </Button>
                                     </DropdownMenuTrigger>
@@ -769,11 +824,11 @@ const PatientDashboard = () => {
                         {(user?.user_metadata?.name || user?.name || 'U').charAt(0)}
                       </AvatarFallback>
                     </Avatar>
-                    <Button variant="outline" className="w-full mb-2">
+                    <Button className="w-full mb-2 bg-white hover:bg-blue-50 text-gray-700 border border-blue-200 hover:border-blue-300">
                       <Upload className="h-4 w-4 mr-2" />
                       Upload New Photo
                     </Button>
-                    <p className={`text-xs ${textClasses} opacity-60`}>
+                    <p className="text-xs text-gray-600 opacity-60">
                       JPG, PNG or GIF. Max size 2MB.
                     </p>
                   </div>
@@ -1006,8 +1061,7 @@ const PatientDashboard = () => {
                 </Button>
                 <Button 
                   type="button"
-                  variant="outline" 
-                  className="flex-1 bg-white/50 backdrop-blur-sm border-white/30"
+                  className="flex-1 bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 hover:border-gray-400"
                   onClick={() => {
                     setProfileData({
                       firstName: user?.user_metadata?.name?.split(' ')[0] || user?.name?.split(' ')[0] || '',
