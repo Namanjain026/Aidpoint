@@ -86,6 +86,7 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
 import PrivateRoute from "@/components/PrivateRoute";
+import PageTransition from "@/components/PageTransition";
 
 const queryClient = new QueryClient();
 
@@ -100,31 +101,33 @@ const App = () => (
             <div className="min-h-screen flex flex-col">
               <Navbar />
               <main className="flex-1">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/hospitals" element={<HospitalList />} />
-                  <Route path="/hospitals/:id" element={<HospitalDetails />} />
-                  <Route path="/doctors" element={<DoctorList />} />
-                  <Route path="/doctors/:id" element={<DoctorDetails />} />
-                  <Route path="/appointments" element={<MyAppointments />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
+                <PageTransition>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/hospitals" element={<HospitalList />} />
+                    <Route path="/hospitals/:id" element={<HospitalDetails />} />
+                    <Route path="/doctors" element={<DoctorList />} />
+                    <Route path="/doctors/:id" element={<DoctorDetails />} />
+                    <Route path="/appointments" element={<MyAppointments />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
 
-                  {/* Protected Routes */}
-                  <Route path="/patient-dashboard" element={
-                    <PrivateRoute allowedRoles={["patient"]}>
-                      <PatientDashboard />
-                    </PrivateRoute>
-                  } />
-                  <Route path="/hospital-dashboard" element={
-                    <PrivateRoute allowedRoles={["hospital"]}>
-                      <HospitalDashboard />
-                    </PrivateRoute>
-                  } />
+                    {/* Protected Routes */}
+                    <Route path="/patient-dashboard" element={
+                      <PrivateRoute allowedRoles={["patient"]}>
+                        <PatientDashboard />
+                      </PrivateRoute>
+                    } />
+                    <Route path="/hospital-dashboard" element={
+                      <PrivateRoute allowedRoles={["hospital"]}>
+                        <HospitalDashboard />
+                      </PrivateRoute>
+                    } />
 
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </PageTransition>
               </main>
               {/* <div className="absolute bottom-20 right-4">
                 <ThemeToggle />

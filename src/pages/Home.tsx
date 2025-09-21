@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Users, Building2, Calendar, Shield, Award, HeartHandshake, Star, Zap, CheckCircle, PlayCircle, ChevronDown, MapPin, Clock, Bell, Search } from 'lucide-react';
+import { ArrowRight, Users, Building2, Calendar, Shield, Award, HeartHandshake, Sun, Moon, Star, Zap, CheckCircle, PlayCircle, ChevronDown, MapPin, Clock, Bell, Search } from 'lucide-react';
+import AnimatedSection from '@/components/AnimatedSection';
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -146,48 +147,12 @@ const Home = () => {
       </div>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-40">
-        <div className="relative backdrop-blur-xl bg-white/80 border-b border-blue-100">
-          <div className="absolute bottom-0 left-0 right-0 h-1 overflow-hidden">
-            <div className="w-full h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500"></div>
-          </div>
 
-          <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div className="flex items-center">
-              <div className="relative">
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-xl mr-3">
-                  <HeartHandshake className="h-8 w-8 text-white" />
-                </div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-400 rounded-full animate-pulse" />
-              </div>
-              <div className="flex flex-col">
-                <h1 className="font-bold text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  AidPoint
-                </h1>
-                <div className="text-xs text-gray-600 font-medium">
-                  Healthcare Reimagined
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-6">
-              <div className="hidden md:flex items-center space-x-8">
-                <a href="#features" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Features</a>
-                <a href="#services" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Services</a>
-                <a href="#testimonials" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Reviews</a>
-              </div>
-              <button className="hidden md:flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg">
-                <span>Get Started</span>
-                <ArrowRight className="h-4 w-4 ml-1" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 relative">
-        <div className="container mx-auto max-w-6xl">
+      <AnimatedSection animation="fade-in-up" delay={0}>
+        <section className="pt-32 pb-20 px-6 relative">
+          <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
               <div className="opacity-0 animate-fade-in">
@@ -353,9 +318,11 @@ const Home = () => {
           </div>
         )}
       </section>
+      </AnimatedSection>
 
       {/* Services Section */}
-      <section className="py-20" id="services">
+      <AnimatedSection animation="scale-in" delay={0.1}>
+        <section className="py-20" id="services">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">Our Services</h3>
@@ -400,9 +367,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </AnimatedSection>
 
       {/* Features Section */}
-      <section className="py-20 px-6 bg-white/30 backdrop-blur-sm" id="features">
+      <AnimatedSection animation="bounce-in" delay={0.2}>
+        <section className="py-20 px-6 bg-white/30 backdrop-blur-sm" id="features">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 backdrop-blur-xl bg-white/80 border border-blue-100 rounded-full mb-6 shadow-lg">
@@ -439,9 +408,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </AnimatedSection>
 
       {/* Testimonials */}
-      <section className="py-20" id="testimonials">
+      <AnimatedSection animation="fade-in-up" delay={0.3}>
+        <section className="py-20" id="testimonials">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
@@ -476,9 +447,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </AnimatedSection>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <AnimatedSection animation="scale-in" delay={0.4}>
+        <section className="py-20 px-6 relative overflow-hidden">
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="bg-gradient-to-r from-blue-600 to-purple-800 rounded-2xl shadow-xl p-10 md:p-16 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
@@ -520,6 +493,7 @@ const Home = () => {
         <div className="absolute top-1/4 left-10 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-10 w-60 h-60 bg-purple-400/20 rounded-full blur-3xl"></div>
       </section>
+      </AnimatedSection>
 
       {/* Footer */}
       <footer className="py-12 px-6 bg-white/80 backdrop-blur-sm border-t border-gray-200">
