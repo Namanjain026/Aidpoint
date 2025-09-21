@@ -70,6 +70,7 @@ import { ThemeProvider } from "next-themes";
 
 import Navbar from "@/components/layout/Navbar";
 import Chatbot from "@/components/layout/Chatbot";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 import Home from "./pages/Home";
 import HospitalList from "./pages/HospitalList";
@@ -125,6 +126,9 @@ const App = () => (
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
+              {/* <div className="absolute bottom-20 right-4">
+                <ThemeToggle />
+              </div> */}
               <Chatbot />
             </div>
           </BrowserRouter>

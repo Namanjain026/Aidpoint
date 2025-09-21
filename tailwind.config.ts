@@ -67,6 +67,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        neutral: {
+          DEFAULT: "#f5f5f5", // Light neutral background
+          foreground: "#4a4a4a", // Neutral text color
+          accent: "#a8dadc", // Soft pastel accent
+          muted: "#e9ecef", // Muted background
+          card: "#ffffff", // Card background
+          border: "#dcdcdc", // Border color
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -77,6 +85,7 @@ export default {
         "gradient-hero": "var(--gradient-hero)",
         "gradient-card": "var(--gradient-card)",
         "gradient-accent": "var(--gradient-accent)",
+        "gradient-neutral": "linear-gradient(135deg, #f5f5f5, #e9ecef)",
       },
       boxShadow: {
         "soft": "var(--shadow-soft)",
