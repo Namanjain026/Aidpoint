@@ -28,7 +28,6 @@
 //     setIsSubmitted(true);
 //     setTimeout(() => {
 //       setIsSubmitted(false);
-//       // Reset form or navigate away
 //       setFormData({
 //         name: "",
 //         email: "",
@@ -61,8 +60,7 @@
 
 //   return (
 //     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-100 p-4">
-//       <div className="max-w-4xl mx-auto">
-        
+//       <div className="max-w-2xl mx-auto">
 //         {/* Header */}
 //         <div className="text-center mb-8 pt-8">
 //           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl mb-4 shadow-lg">
@@ -104,7 +102,6 @@
 //         {/* Form Card */}
 //         <div className="bg-white rounded-3xl shadow-xl border border-purple-100 overflow-hidden">
 //           <div className="p-8">
-            
 //             {/* Step 1: Personal Information */}
 //             {currentStep === 1 && (
 //               <div className="space-y-6">
@@ -115,7 +112,7 @@
 
 //                 <div className="grid md:grid-cols-2 gap-6">
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <User className="h-4 w-4 mr-2 text-purple-500" />
 //                       Full Name
 //                     </label>
@@ -124,13 +121,13 @@
 //                       name="name"
 //                       value={formData.name}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                       placeholder="Dr. John Smith"
 //                     />
 //                   </div>
 
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <Mail className="h-4 w-4 mr-2 text-purple-500" />
 //                       Email Address
 //                     </label>
@@ -139,7 +136,7 @@
 //                       name="email"
 //                       value={formData.email}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                       placeholder="doctor@hospital.com"
 //                     />
 //                   </div>
@@ -147,7 +144,7 @@
 
 //                 <div className="grid md:grid-cols-3 gap-6">
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <Phone className="h-4 w-4 mr-2 text-purple-500" />
 //                       Phone Number
 //                     </label>
@@ -156,13 +153,13 @@
 //                       name="phone"
 //                       value={formData.phone}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                       placeholder="+1 (555) 123-4567"
 //                     />
 //                   </div>
 
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <Calendar className="h-4 w-4 mr-2 text-purple-500" />
 //                       Age
 //                     </label>
@@ -171,18 +168,18 @@
 //                       name="age"
 //                       value={formData.age}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                       placeholder="35"
 //                     />
 //                   </div>
 
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700">Gender</label>
+//                     <label className="text-sm font-medium text-gray-800">Gender</label>
 //                     <select
 //                       name="gender"
 //                       value={formData.gender}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                     >
 //                       <option value="">Select Gender</option>
 //                       <option value="Male">Male</option>
@@ -204,7 +201,7 @@
 
 //                 <div className="grid md:grid-cols-2 gap-6">
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <Stethoscope className="h-4 w-4 mr-2 text-purple-500" />
 //                       Medical Speciality
 //                     </label>
@@ -213,13 +210,13 @@
 //                       name="speciality"
 //                       value={formData.speciality}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                       placeholder="Cardiologist, Neurologist, etc."
 //                     />
 //                   </div>
 
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <Briefcase className="h-4 w-4 mr-2 text-purple-500" />
 //                       Years of Experience
 //                     </label>
@@ -228,7 +225,7 @@
 //                       name="experience"
 //                       value={formData.experience}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                       placeholder="10"
 //                     />
 //                   </div>
@@ -236,7 +233,7 @@
 
 //                 <div className="grid md:grid-cols-2 gap-6">
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <DollarSign className="h-4 w-4 mr-2 text-purple-500" />
 //                       Consultation Fees ($)
 //                     </label>
@@ -245,13 +242,13 @@
 //                       name="fees"
 //                       value={formData.fees}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                       placeholder="150"
 //                     />
 //                   </div>
 
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <Clock className="h-4 w-4 mr-2 text-purple-500" />
 //                       Available Timings
 //                     </label>
@@ -260,7 +257,7 @@
 //                       name="timings"
 //                       value={formData.timings}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                       placeholder="9:00 AM - 5:00 PM"
 //                     />
 //                   </div>
@@ -278,7 +275,7 @@
 
 //                 <div className="space-y-6">
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <Building2 className="h-4 w-4 mr-2 text-purple-500" />
 //                       Hospital/Clinic Name
 //                     </label>
@@ -287,13 +284,13 @@
 //                       name="hospital"
 //                       value={formData.hospital}
 //                       onChange={handleChange}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black"
 //                       placeholder="City General Hospital"
 //                     />
 //                   </div>
 
 //                   <div className="space-y-2">
-//                     <label className="text-sm font-medium text-gray-700 flex items-center">
+//                     <label className="text-sm font-medium text-gray-800 flex items-center">
 //                       <MapPin className="h-4 w-4 mr-2 text-purple-500" />
 //                       Complete Address
 //                     </label>
@@ -302,7 +299,7 @@
 //                       value={formData.address}
 //                       onChange={handleChange}
 //                       rows={4}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all resize-none"
+//                       className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-black resize-none"
 //                       placeholder="123 Medical Center Drive, Suite 100, City, State 12345"
 //                     />
 //                   </div>
@@ -396,11 +393,33 @@
 
 // export default AddDoctor;
 
-import { useState } from "react";
+
+import { useState, useContext } from "react";
+import { DoctorContext } from "@/contexts/DoctorContext"; // Corrected import
 import { User, Mail, Calendar, Briefcase, DollarSign, Stethoscope, Building2, Clock, Phone, MapPin, ArrowRight, CheckCircle, Plus, Save } from "lucide-react";
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  age: string;
+  gender: string;
+  speciality: string;
+  experience: string;
+  fees: string;
+  timings: string;
+  hospital: string;
+  address: string;
+}
+
 const AddDoctor = () => {
-  const [formData, setFormData] = useState({
+  const doctorContext = useContext(DoctorContext);
+  if (!doctorContext) {
+    throw new Error("DoctorContext must be used within a DoctorProvider");
+  }
+  const { addDoctor } = doctorContext;
+
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     phone: "",
@@ -414,15 +433,16 @@ const AddDoctor = () => {
     address: "",
   });
 
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = () => {
     console.log("Doctor Data:", formData);
+    addDoctor({ name: formData.name, specialty: formData.speciality }); // Map speciality to specialty
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
@@ -439,6 +459,7 @@ const AddDoctor = () => {
         hospital: "",
         address: "",
       });
+      setCurrentStep(1); // Reset to first step
     }, 2000);
   };
 
