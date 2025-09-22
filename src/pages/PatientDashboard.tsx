@@ -813,276 +813,60 @@ const PatientDashboard = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Profile Picture Section */}
-                <div className={`${cardClasses} p-6 h-fit`}>
-                  <h4 className={`font-semibold text-lg mb-4 ${headingClasses}`}>Profile Picture</h4>
-                  <div className="text-center">
-                    <Avatar className="h-24 w-24 mx-auto mb-4 ring-4 ring-white/50">
-                      <AvatarImage src={user?.avatar} alt={user?.name} />
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white text-2xl font-bold">
-                        {(user?.user_metadata?.name || user?.name || 'U').charAt(0)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <Button className="w-full mb-2 bg-white hover:bg-blue-50 text-gray-700 border border-blue-200 hover:border-blue-300">
-                      <Upload className="h-4 w-4 mr-2" />
-                      Upload New Photo
-                    </Button>
-                    <p className="text-xs text-gray-600 opacity-60">
-                      JPG, PNG or GIF. Max size 2MB.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Personal Information */}
-                <div className={`lg:col-span-2 ${cardClasses} p-6`}>
-                  <h4 className={`font-semibold text-lg mb-6 ${headingClasses}`}>Personal Information</h4>
-                  
-                  <form onSubmit={handleProfileUpdate} className="space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="firstName" className={`text-sm font-medium ${headingClasses}`}>
-                          First Name
-                        </Label>
-                        <Input
-                          id="firstName"
-                          value={profileData.firstName}
-                          onChange={(e) => handleProfileInputChange('firstName', e.target.value)}
-                          className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                          placeholder="Enter your first name"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="lastName" className={`text-sm font-medium ${headingClasses}`}>
-                          Last Name
-                        </Label>
-                        <Input
-                          id="lastName"
-                          value={profileData.lastName}
-                          onChange={(e) => handleProfileInputChange('lastName', e.target.value)}
-                          className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                          placeholder="Enter your last name"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="email" className={`text-sm font-medium ${headingClasses}`}>
-                          Email Address
-                        </Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={profileData.email}
-                          onChange={(e) => handleProfileInputChange('email', e.target.value)}
-                          className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                          placeholder="Enter your email"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="phone" className={`text-sm font-medium ${headingClasses}`}>
-                          Phone Number
-                        </Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          value={profileData.phone}
-                          onChange={(e) => handleProfileInputChange('phone', e.target.value)}
-                          className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                          placeholder="Enter your phone number"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="dateOfBirth" className={`text-sm font-medium ${headingClasses}`}>
-                          Date of Birth
-                        </Label>
-                        <Input
-                          id="dateOfBirth"
-                          type="date"
-                          value={profileData.dateOfBirth}
-                          onChange={(e) => handleProfileInputChange('dateOfBirth', e.target.value)}
-                          className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="gender" className={`text-sm font-medium ${headingClasses}`}>
-                          Gender
-                        </Label>
-                        <Select value={profileData.gender} onValueChange={(value) => handleProfileInputChange('gender', value)}>
-                          <SelectTrigger className="mt-1 bg-white/50 backdrop-blur-sm border-white/30">
-                            <SelectValue placeholder="Select gender" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="male">Male</SelectItem>
-                            <SelectItem value="female">Female</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                            <SelectItem value="prefer-not-to-say">Prefer not to say</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="address" className={`text-sm font-medium ${headingClasses}`}>
-                        Address
-                      </Label>
-                      <Textarea
-                        id="address"
-                        value={profileData.address}
-                        onChange={(e) => handleProfileInputChange('address', e.target.value)}
-                        placeholder="Enter your full address"
-                        className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                        rows={3}
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div>
-                        <Label htmlFor="city" className={`text-sm font-medium ${headingClasses}`}>
-                          City
-                        </Label>
-                        <Input
-                          id="city"
-                          value={profileData.city}
-                          onChange={(e) => handleProfileInputChange('city', e.target.value)}
-                          className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                          placeholder="Enter your city"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="state" className={`text-sm font-medium ${headingClasses}`}>
-                          State/Province
-                        </Label>
-                        <Input
-                          id="state"
-                          value={profileData.state}
-                          onChange={(e) => handleProfileInputChange('state', e.target.value)}
-                          className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                          placeholder="Enter your state"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="zipCode" className={`text-sm font-medium ${headingClasses}`}>
-                          Zip/Postal Code
-                        </Label>
-                        <Input
-                          id="zipCode"
-                          value={profileData.zipCode}
-                          onChange={(e) => handleProfileInputChange('zipCode', e.target.value)}
-                          className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                          placeholder="Enter zip code"
-                        />
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
-              {/* Medical Information Section */}
-              <div className={`${cardClasses} p-6`}>
-                <h4 className={`font-semibold text-lg mb-6 ${headingClasses}`}>Medical Information</h4>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div>
-                    <Label htmlFor="bloodType" className={`text-sm font-medium ${headingClasses}`}>
-                      Blood Type
-                    </Label>
-                    <Select value={profileData.bloodType} onValueChange={(value) => handleProfileInputChange('bloodType', value)}>
-                      <SelectTrigger className="mt-1 bg-white/50 backdrop-blur-sm border-white/30">
-                        <SelectValue placeholder="Select blood type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="A+">A+</SelectItem>
-                        <SelectItem value="A-">A-</SelectItem>
-                        <SelectItem value="B+">B+</SelectItem>
-                        <SelectItem value="B-">B-</SelectItem>
-                        <SelectItem value="AB+">AB+</SelectItem>
-                        <SelectItem value="AB-">AB-</SelectItem>
-                        <SelectItem value="O+">O+</SelectItem>
-                        <SelectItem value="O-">O-</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="emergencyContact" className={`text-sm font-medium ${headingClasses}`}>
-                      Emergency Contact
-                    </Label>
-                    <Input
-                      id="emergencyContact"
-                      value={profileData.emergencyContact}
-                      onChange={(e) => handleProfileInputChange('emergencyContact', e.target.value)}
-                      className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                      placeholder="Name and phone number"
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-4">
-                  <Label htmlFor="allergies" className={`text-sm font-medium ${headingClasses}`}>
-                    Allergies & Medical Conditions
-                  </Label>
-                  <Textarea
-                    id="allergies"
-                    value={profileData.allergies}
-                    onChange={(e) => handleProfileInputChange('allergies', e.target.value)}
-                    placeholder="List any known allergies or medical conditions"
-                    className="mt-1 bg-white/50 backdrop-blur-sm border-white/30"
-                    rows={3}
+              <form onSubmit={handleProfileUpdate} className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8 bg-white text-gray-900 p-6 rounded-lg shadow-md">
+                <div className={`${cardClasses} p-6`}>
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    value={profileData.firstName + ' ' + profileData.lastName}
+                    onChange={(e) => {
+                      const [firstName, ...lastName] = e.target.value.split(' ');
+                      setProfileData(prev => ({
+                        ...prev,
+                        firstName,
+                        lastName: lastName.join(' ')
+                      }));
+                    }}
+                    className="mt-1 bg-white text-gray-900 border border-gray-300"
+                    required
                   />
                 </div>
-              </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                <Button 
-                  type="submit"
-                  disabled={isUpdatingProfile}
-                  className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isUpdatingProfile ? (
-                    <>
-                      <Clock className="h-4 w-4 mr-2 animate-spin" />
-                      Updating...
-                    </>
-                  ) : (
-                    <>
-                      <Edit3 className="h-4 w-4 mr-2" />
-                      Update Profile
-                    </>
-                  )}
-                </Button>
-                <Button 
-                  type="button"
-                  className="flex-1 bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 hover:border-gray-400"
-                  onClick={() => {
-                    setProfileData({
-                      firstName: user?.user_metadata?.name?.split(' ')[0] || user?.name?.split(' ')[0] || '',
-                      lastName: user?.user_metadata?.name?.split(' ')[1] || user?.name?.split(' ')[1] || '',
-                      email: user?.email || '',
-                      phone: user?.user_metadata?.phone || '',
-                      dateOfBirth: user?.user_metadata?.date_of_birth || '',
-                      gender: user?.user_metadata?.gender || '',
-                      address: user?.user_metadata?.address || '',
-                      city: user?.user_metadata?.city || '',
-                      state: user?.user_metadata?.state || '',
-                      zipCode: user?.user_metadata?.zip_code || '',
-                      bloodType: user?.user_metadata?.blood_type || '',
-                      emergencyContact: user?.user_metadata?.emergency_contact || '',
-                      allergies: user?.user_metadata?.allergies || 'No known allergies'
-                    });
-                  }}
-                >
-                  Reset Changes
-                </Button>
-              </div>
+                <div className={`${cardClasses} p-6`}>
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={profileData.email}
+                    onChange={(e) => handleProfileInputChange('email', e.target.value)}
+                    className="mt-1 bg-white text-gray-900 border border-gray-300"
+                    required
+                  />
+                </div>
+
+                <div className={`${cardClasses} p-6`}>
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={profileData.phone}
+                    onChange={(e) => handleProfileInputChange('phone', e.target.value)}
+                    className="mt-1 bg-white text-gray-900 border border-gray-300"
+                    required
+                  />
+                </div>
+
+                <div className="lg:col-span-2 flex justify-end">
+                  <Button
+                    type="submit"
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                    disabled={isUpdatingProfile}
+                  >
+                    {isUpdatingProfile ? 'Updating...' : 'Update Profile'}
+                  </Button>
+                </div>
+              </form>
             </TabsContent>
           </Tabs>
         </div>
