@@ -192,7 +192,7 @@ const App = () => (
                     <Route path="/hospitals/:id" element={<HospitalDetails />} />
                     <Route path="/doctors" element={<DoctorList />} />
                     <Route path="/doctors/:id" element={<DoctorDetails />} />
-                    <Route path="/add-doctor" element={<AddDoctor onAddDoctor={() => {}} />} />
+                    <Route path="/add-doctor" element={<AddDoctor />} />
                     <Route path="/appointments" element={<MyAppointments />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/login" element={<Login />} /> 
