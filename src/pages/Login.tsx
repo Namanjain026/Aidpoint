@@ -213,13 +213,17 @@ const Login = () => {
 
       toast({
         title: "Welcome back!",
-        description: `Logged in as ${formData.email}`,
+        description: `Successfully logged in as ${role}`,
       });
 
-      // role-based redirect
-      if (role === "patient") navigate("/patient-dashboard");
-      else if (role === "hospital") navigate("/hospital-dashboard");
-      else navigate("/");
+      // role-based redirect with correct dashboard paths
+      if (role === "patient") {
+        navigate("/patient-dashboard");
+      } else if (role === "hospital") {
+        navigate("/hospital-dashboard");
+      } else {
+        navigate("/");
+      }
 
     } catch (error: any) {
       toast({

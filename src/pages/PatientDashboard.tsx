@@ -19,6 +19,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { supabase } from '@/lib/supabaseClient';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
+import { fetchPatientData, updatePatientData, PatientData } from '@/lib/userDataUtils';
 
 const PatientDashboard = () => {
   const { user, isAuthenticated } = useAuth();

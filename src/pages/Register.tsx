@@ -11,11 +11,27 @@ import { supabase } from '@/lib/supabaseClient';  // ✅ Supabase client
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    // Common fields
     email: '',
     password: '',
     confirmPassword: '',
     role: 'patient' as 'patient' | 'hospital',
+    
+    // Patient fields
+    firstName: '',
+    lastName: '',
+    phone: '',
+    dateOfBirth: '',
+    
+    // Hospital fields
+    hospitalName: '',
+    licenseNumber: '',
+    contactPerson: '',
+    contactPhone: '',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -47,15 +63,34 @@ const Register = () => {
     setIsLoading(true);
 
     try {
+      // Prepare metadata based on role
+      const userData = formData.role === 'patient' 
+        ? {
+            role: formData.role,
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            name: `${formData.firstName} ${formData.lastName}`,
+            phone: formData.phone,
+            date_of_birth: formData.dateOfBirth,
+          }
+        : {
+            role: formData.role,
+            hospital_name: formData.hospitalName,
+            license_number: formData.licenseNumber,
+            contact_person: formData.contactPerson,
+            phone: formData.contactPhone,
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            zip_code: formData.zipCode,
+          };
+
       // ✅ Create Supabase user with metadata
       const { data, error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
         options: {
-          data: {
-            name: formData.name,
-            role: formData.role,
-          },
+          data: userData,
         },
       });
 
@@ -63,7 +98,7 @@ const Register = () => {
 
       toast({
         title: "Account Created!",
-        description: `Welcome to AidPoint! Check your email to verify your ${formData.role} account.`,
+        description: `Welcome to AidPoint! Your ${formData.role} account has been created. Please check your email to verify your account.`,
       });
 
       navigate('/login'); // redirect to login after signup
@@ -141,24 +176,165 @@ const Register = () => {
                 </RadioGroup>
               </div>
 
-              <div>
-                <Label htmlFor="name">
-                  {formData.role === 'hospital' ? 'Hospital Name' : 'Full Name'}
-                </Label>
-                <Input
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder={
-                    formData.role === 'hospital' 
-                      ? 'Enter hospital name' 
-                      : 'Enter your full name'
-                  }
-                  className="mt-1"
-                />
-              </div>
+              {/* Dynamic fields based on role */}
+              {formData.role === 'patient' ? (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="firstName">First Name</Label>
+                      <Input
+                        id="firstName"
+                        name="firstName"
+                        required
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        placeholder="First name"
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="lastName">Last Name</Label>
+                      <Input
+                        id="lastName"
+                        name="lastName"
+                        required
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        placeholder="Last name"
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="phone">Phone Number</Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="+1 (555) 123-4567"
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="dateOfBirth">Date of Birth</Label>
+                      <Input
+                        id="dateOfBirth"
+                        name="dateOfBirth"
+                        type="date"
+                        value={formData.dateOfBirth}
+                        onChange={handleInputChange}
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="hospitalName">Hospital Name</Label>
+                    <Input
+                      id="hospitalName"
+                      name="hospitalName"
+                      required
+                      value={formData.hospitalName}
+                      onChange={handleInputChange}
+                      placeholder="Enter hospital name"
+                      className="mt-1"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="licenseNumber">License Number</Label>
+                      <Input
+                        id="licenseNumber"
+                        name="licenseNumber"
+                        required
+                        value={formData.licenseNumber}
+                        onChange={handleInputChange}
+                        placeholder="Hospital license number"
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="contactPerson">Contact Person</Label>
+                      <Input
+                        id="contactPerson"
+                        name="contactPerson"
+                        required
+                        value={formData.contactPerson}
+                        onChange={handleInputChange}
+                        placeholder="Primary contact name"
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="contactPhone">Contact Phone</Label>
+                    <Input
+                      id="contactPhone"
+                      name="contactPhone"
+                      type="tel"
+                      required
+                      value={formData.contactPhone}
+                      onChange={handleInputChange}
+                      placeholder="+1 (555) 123-4567"
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="address">Address</Label>
+                    <Input
+                      id="address"
+                      name="address"
+                      required
+                      value={formData.address}
+                      onChange={handleInputChange}
+                      placeholder="Street address"
+                      className="mt-1"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <Label htmlFor="city">City</Label>
+                      <Input
+                        id="city"
+                        name="city"
+                        required
+                        value={formData.city}
+                        onChange={handleInputChange}
+                        placeholder="City"
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="state">State</Label>
+                      <Input
+                        id="state"
+                        name="state"
+                        required
+                        value={formData.state}
+                        onChange={handleInputChange}
+                        placeholder="State"
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="zipCode">ZIP Code</Label>
+                      <Input
+                        id="zipCode"
+                        name="zipCode"
+                        value={formData.zipCode}
+                        onChange={handleInputChange}
+                        placeholder="ZIP"
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
 
               <div>
                 <Label htmlFor="email">Email Address</Label>
