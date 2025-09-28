@@ -129,3 +129,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Floating animations for medical elements */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-20px) rotate(10deg);
+    opacity: 0.3;
+  }
+}

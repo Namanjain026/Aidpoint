@@ -267,7 +267,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
-import { Menu, X, User, LogOut, HeartHandshake, Bell, Search } from "lucide-react";
+import { Menu, X, User, LogOut, HeartHandshake, Bell, Search, MessageSquare } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   DropdownMenu,
@@ -407,6 +407,15 @@ const Navbar = () => {
                     <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{user?.name}</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">{user?.email}</p>
                   </div>
+                  <DropdownMenuItem asChild>
+                    <Link 
+                      to="/feedback" 
+                      className="flex items-center w-full px-2 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                    >
+                      <MessageSquare className="h-4 w-4 mr-2" />
+                      Feedback
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={logout}
                     className="text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
@@ -485,6 +494,21 @@ const Navbar = () => {
                       <p className="text-xs text-gray-500 dark:text-gray-400">{user?.email}</p>
                     </div>
                   </div>
+                  
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-xl"
+                    asChild
+                  >
+                    <Link 
+                      to="/feedback" 
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center"
+                    >
+                      <MessageSquare className="h-4 w-4 mr-2" />
+                      Feedback
+                    </Link>
+                  </Button>
                   
                   <Button
                     variant="ghost"

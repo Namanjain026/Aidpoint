@@ -460,6 +460,7 @@ import PatientDashboard from "./pages/PatientDashboard";
 import HospitalDashboard from "./pages/HospitalDashboard";
 import AddDoctor from "./pages/AddDoctor";
 import HospitalSearch from "./pages/HospitalSearch"; // Added
+import Feedback from "./pages/Feedback"; // Added
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
@@ -488,6 +489,7 @@ const App = () => (
                       <Route path="/doctors" element={<DoctorList />} />
                       <Route path="/doctors/:id" element={<DoctorDetails />} />
                       <Route path="/hospital-search" element={<HospitalSearch />} /> {/* Added */}
+                      <Route path="/feedback" element={<Feedback />} /> {/* Added */}
                       <Route path="/appointments" element={<MyAppointments />} />
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/login" element={<Login />} />
