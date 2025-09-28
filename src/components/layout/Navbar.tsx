@@ -267,7 +267,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
-import { Menu, X, User, LogOut, HeartHandshake, Bell, Search, MessageSquare } from "lucide-react";
+import { Menu, X, User, LogOut, HeartHandshake, Bell, Search, MessageSquare, Settings, HelpCircle } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   DropdownMenu,
@@ -373,14 +373,41 @@ const Navbar = () => {
 
             {/* Notifications */}
             {isAuthenticated && (
-              <Button
-                variant="ghost"
-                size="sm"
-                className="rounded-full w-10 h-10 p-0 hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-200 relative"
-              >
-                <Bell className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse" />
-              </Button>
+              <DropdownMenu>
+                 <DropdownMenuTrigger asChild>
+                   <Button
+                     variant="ghost"
+                     size="sm"
+                     className="rounded-full w-10 h-10 p-0 hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-200 relative"
+                   >
+                     <Bell className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                     <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse" />
+                   </Button>
+                 </DropdownMenuTrigger>
+                 <DropdownMenuContent
+                   align="end"
+                   sideOffset={5}
+                   className="w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl rounded-xl p-2 z-[100]"
+                 >
+                   <div className="px-3 py-2 border-b border-gray-100 dark:border-gray-700 mb-2">
+                     <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Notifications</p>
+                   </div>
+                   <div className="space-y-2">
+                     <div className="p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800">
+                       <p className="text-sm font-medium text-gray-900 dark:text-gray-100">New Appointment Request</p>
+                       <p className="text-xs text-gray-500 dark:text-gray-400">You have a new appointment request from John Doe.</p>
+                     </div>
+                     <div className="p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800">
+                       <p className="text-sm font-medium text-gray-900 dark:text-gray-100">System Update</p>
+                       <p className="text-xs text-gray-500 dark:text-gray-400">The system will undergo maintenance at 12:00 AM.</p>
+                     </div>
+                     <div className="p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800">
+                       <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Reminder</p>
+                       <p className="text-xs text-gray-500 dark:text-gray-400">Your appointment with Dr. Smith is tomorrow at 10:00 AM.</p>
+                     </div>
+                   </div>
+                 </DropdownMenuContent>
+               </DropdownMenu>
             )}
 
             <ThemeToggle />
@@ -414,6 +441,24 @@ const Navbar = () => {
                     >
                       <MessageSquare className="h-4 w-4 mr-2" />
                       Feedback
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link 
+                      to="/home" 
+                      className="flex items-center w-full px-2 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                    >
+                      <Settings className="h-4 w-4 mr-2" />
+                      Settings
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link 
+                      to="/home" 
+                      className="flex items-center w-full px-2 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                    >
+                      <HelpCircle className="h-4 w-4 mr-2" />
+                      Help
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem
@@ -509,6 +554,7 @@ const Navbar = () => {
                       Feedback
                     </Link>
                   </Button>
+
                   
                   <Button
                     variant="ghost"
