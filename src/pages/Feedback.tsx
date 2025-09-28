@@ -56,17 +56,32 @@ const Feedback = () => {
     setLoading(true);
 
     try {
-      // Here you would typically send the feedback to your backend
-      // For now, we'll simulate an API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Save feedback to Supabase
+      const { supabase } = await import('@/lib/supabaseClient');
       
-      // You can integrate with your backend here:
-      // const response = await fetch('/api/feedback', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(feedbackData)
-      // });
+      const feedbackToSave = {
+        user_id: user?.id || null,
+        name: feedbackData.name,
+        email: feedbackData.email,
+        category: feedbackData.category,
+        rating: parseInt(feedbackData.rating),
+        subject: feedbackData.subject,
+        message: feedbackData.message,
+        status: 'new'
+      };
 
+      const { data, error } = await supabase
+        .from('feedback')
+        .insert([feedbackToSave])
+        .select();
+
+      if (error) {
+        console.error('Error saving feedback:', error);
+        alert('Failed to submit feedback. Please try again later.');
+        return;
+      }
+
+      console.log('Feedback saved:', data);
       setIsSubmitted(true);
       toast({
         title: "Feedback Submitted!",

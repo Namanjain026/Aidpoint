@@ -461,6 +461,7 @@ import HospitalDashboard from "./pages/HospitalDashboard";
 import AddDoctor from "./pages/AddDoctor";
 import HospitalSearch from "./pages/HospitalSearch"; // Added
 import Feedback from "./pages/Feedback"; // Added
+import FeedbackDashboard from "./pages/FeedbackDashboard"; // Developer feedback viewer
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
@@ -490,6 +491,7 @@ const App = () => (
                       <Route path="/doctors/:id" element={<DoctorDetails />} />
                       <Route path="/hospital-search" element={<HospitalSearch />} /> {/* Added */}
                       <Route path="/feedback" element={<Feedback />} /> {/* Added */}
+                      <Route path="/feedback-dashboard" element={<FeedbackDashboard />} /> {/* Developer dashboard */}
                       <Route path="/appointments" element={<MyAppointments />} />
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/login" element={<Login />} />
