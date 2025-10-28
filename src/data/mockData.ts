@@ -279,19 +279,33 @@ export interface Review {
   date: string;
 }
 
+// export interface Appointment {
+//   id: string;
+//   doctorId: string;
+//   doctorName: string;
+//   hospitalName: string;
+//   date: string;
+//   time: string;
+//   status: 'upcoming' | 'completed' | 'cancelled';
+//   reason: string;
+//   fees: number;
+//   patientId: any;
+// }
+
+// src/data/mockData.ts
 export interface Appointment {
   id: string;
   doctorId: string;
   doctorName: string;
   hospitalName: string;
-  date: string;
-  time: string;
+  date: string;           
+  time: string;        
   status: 'upcoming' | 'completed' | 'cancelled';
   reason: string;
   fees: number;
-  patientId: any;
+  patientId: string; 
+  notes?: string;     
 }
-
 export const mockHospitals: Hospital[] = [
   {
     id: '1',
