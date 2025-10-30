@@ -464,6 +464,7 @@ import Feedback from "./pages/Feedback"; // Added
 import FeedbackDashboard from "./pages/FeedbackDashboard"; // Developer feedback viewer
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import AppointmentsPage from "./pages/AppointmentsPage";
 
 import PrivateRoute from "@/components/PrivateRoute";
 import PageTransition from "@/components/PageTransition";
@@ -492,7 +493,7 @@ const App = () => (
                       <Route path="/hospital-search" element={<HospitalSearch />} /> {/* Added */}
                       <Route path="/feedback" element={<Feedback />} /> {/* Added */}
                       <Route path="/feedback-dashboard" element={<FeedbackDashboard />} /> {/* Developer dashboard */}
-                      <Route path="/appointments" element={<MyAppointments />} />
+                      <Route path="/appointments" element={<AppointmentsPage />} />
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/login" element={<Login />} />
                       <Route path="/register" element={<Register />} />
