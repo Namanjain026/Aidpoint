@@ -453,7 +453,6 @@ import HospitalList from "./pages/HospitalList";
 import HospitalDetails from "./pages/HospitalDetails";
 import DoctorList from "./pages/DoctorList";
 import DoctorDetails from "./pages/DoctorDetails";
-import MyAppointments from "./pages/MyAppointments";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import PatientDashboard from "./pages/PatientDashboard";
@@ -465,7 +464,7 @@ import FeedbackDashboard from "./pages/FeedbackDashboard"; // Developer feedback
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import AppointmentsPage from "./pages/AppointmentsPage";
-
+import AccessDenied from "./pages/AccessDenied";
 import PrivateRoute from "@/components/PrivateRoute";
 import PageTransition from "@/components/PageTransition";
 
@@ -493,6 +492,7 @@ const App = () => (
                       <Route path="/hospital-search" element={<HospitalSearch />} /> {/* Added */}
                       <Route path="/feedback" element={<Feedback />} /> {/* Added */}
                       <Route path="/feedback-dashboard" element={<FeedbackDashboard />} /> {/* Developer dashboard */}
+                      <Route path="/access-denied" element={<AccessDenied />} />
                       <Route path="/appointments" element={<AppointmentsPage />} />
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/login" element={<Login />} />
