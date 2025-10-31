@@ -6,13 +6,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider";
 import { MapPin, Search, Star } from 'lucide-react';
 import { mockHospitals, Hospital } from '@/data/mockData';
+import HospitalMap from '@/components/HospitalMap';
 
 // Extend Hospital interface for facilities (not in mockdata but added for filtering)
-interface ExtendedHospital extends Hospital {
-  facilities: string[];
-  lat: number;
-  lng: number;
-}
+interface ExtendedHospital extends Hospital {}
 
 const HospitalSearch = () => {
   const [hospitals, setHospitals] = useState<ExtendedHospital[]>([]);
@@ -26,16 +23,10 @@ const HospitalSearch = () => {
   // Mock user position (fallback if geolocation fails)
   const mockUserPosition = { lat: 40.7128, lng: -74.0060 }; // New York
 
-  // Load dummy data with added lat/lng and facilities
+  // Load hospitals from mock data (already contains lat/lng and facilities)
   useEffect(() => {
-    const extendedHospitals: ExtendedHospital[] = mockHospitals.map((h, index) => ({
-      ...h,
-      lat: 40.7128 + index * 0.05, // Mock coordinates for sorting
-      lng: -74.0060 + index * 0.05,
-      facilities: ['ICU', 'Emergency', 'Radiology', 'Lab'].slice(0, index + 2), // Mock facilities
-    }));
-    setHospitals(extendedHospitals);
-    setFilteredHospitals(extendedHospitals);
+    setHospitals(mockHospitals);
+    setFilteredHospitals(mockHospitals);
   }, []);
 
   // Mock geolocation
@@ -118,6 +109,17 @@ const HospitalSearch = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-100 p-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-800 mb-6">Find Hospitals</h1>
+
+        {/* Map */}
+        <div className="mb-8">
+          <div className="h-[420px] w-full overflow-hidden rounded-xl border bg-white shadow-sm">
+            <HospitalMap
+              hospitals={filteredHospitals}
+              userPosition={userPosition ?? undefined}
+              className="h-full"
+            />
+          </div>
+        </div>
 
         {/* Search and Filters */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
