@@ -8,8 +8,8 @@ import { MapPin, Search, Star } from 'lucide-react';
 import { mockHospitals, Hospital } from '@/data/mockData';
 import HospitalMap from '@/components/HospitalMap';
 
-// Extend Hospital interface for facilities (not in mockdata but added for filtering)
-interface ExtendedHospital extends Hospital {}
+// For clarity in this file
+type ExtendedHospital = Hospital;
 
 const HospitalSearch = () => {
   const [hospitals, setHospitals] = useState<ExtendedHospital[]>([]);

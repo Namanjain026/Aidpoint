@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import type { MapContainerProps } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { Hospital } from '@/data/mockData';
+import { MapPin, Hospital as HospitalIcon } from 'lucide-react';
+import ReactDOMServer from 'react-dom/server';
 
 // Fix default icon paths for Vite builds
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
@@ -14,6 +17,38 @@ L.Icon.Default.mergeOptions({
   iconUrl,
   shadowUrl,
 });
+
+// Create custom hospital marker icon
+const createHospitalIcon = () => {
+  const html = ReactDOMServer.renderToString(
+    <div className="flex items-center justify-center">
+      <HospitalIcon size={20} className="text-red-600" />
+    </div>
+  );
+  return L.divIcon({
+    html,
+    className: 'custom-hospital-marker',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  });
+};
+
+// Create custom user location marker icon
+const createUserIcon = () => {
+  const html = ReactDOMServer.renderToString(
+    <div className="flex items-center justify-center">
+      <MapPin size={20} className="text-blue-600" />
+    </div>
+  );
+  return L.divIcon({
+    html,
+    className: 'custom-user-marker',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  });
+};
 
 export type LatLng = { lat: number; lng: number };
 
@@ -58,8 +93,11 @@ const HospitalMap: React.FC<HospitalMapProps> = ({ hospitals, userPosition, clas
     return arr;
   }, [hospitals, userPosition]);
 
-  const fallbackCenter = userPosition ?? hospitals[0] ?? { lat: 20, lng: 0 };
-  const center: LatLng = 'lat' in fallbackCenter ? (fallbackCenter as any) : { lat: 20, lng: 0 };
+  const center: LatLng = userPosition
+    ? userPosition
+    : hospitals[0]
+    ? { lat: hospitals[0].lat, lng: hospitals[0].lng }
+    : { lat: 20, lng: 0 };
 
   return (
     <div className={className ?? 'h-96'}>
@@ -78,7 +116,7 @@ const HospitalMap: React.FC<HospitalMapProps> = ({ hospitals, userPosition, clas
         <FitBounds points={points} fallbackCenter={center} />
 
         {userPosition && (
-          <Marker position={[userPosition.lat, userPosition.lng]}>
+          <Marker position={[userPosition.lat, userPosition.lng]} eventHandlers={{ add: (e) => { e.target.setIcon(createUserIcon()); } }}>
             <Popup>
               <div>
                 <strong>Your location</strong>
@@ -88,7 +126,7 @@ const HospitalMap: React.FC<HospitalMapProps> = ({ hospitals, userPosition, clas
         )}
 
         {hospitals.map((h) => (
-          <Marker key={h.id} position={[h.lat, h.lng]}>
+          <Marker key={h.id} position={[h.lat, h.lng]} eventHandlers={{ add: (e) => { e.target.setIcon(createHospitalIcon()); } }}>
             <Popup>
               <div className="space-y-1">
                 <div className="font-semibold">{h.name}</div>
