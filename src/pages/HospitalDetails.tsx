@@ -118,7 +118,7 @@ const HospitalDetails = () => {
           <Card className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <CardContent className="p-6 text-center">
               <DollarSign className="h-8 w-8 text-secondary mx-auto mb-2" />
-              <div className="text-2xl font-bold">${hospital.pricing.consultation}</div>
+              <div className="text-2xl font-bold">₹{hospital.pricing.consultation}</div>
               <div className="text-sm text-muted-foreground">Consultation</div>
               <div className="text-xs text-muted-foreground mt-1">
                 Starting from
@@ -181,15 +181,15 @@ const HospitalDetails = () => {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center p-4 bg-muted rounded-lg">
                     <span className="font-medium">General Consultation</span>
-                    <span className="text-lg font-bold text-primary">${hospital.pricing.consultation}</span>
+                    <span className="text-lg font-bold text-primary">₹{hospital.pricing.consultation}</span>
                   </div>
                   <div className="flex justify-between items-center p-4 bg-muted rounded-lg">
                     <span className="font-medium">Emergency Visit</span>
-                    <span className="text-lg font-bold text-primary">${hospital.pricing.emergency}</span>
+                    <span className="text-lg font-bold text-primary">₹{hospital.pricing.emergency}</span>
                   </div>
                   <div className="flex justify-between items-center p-4 bg-muted rounded-lg">
                     <span className="font-medium">Surgery (Starting from)</span>
-                    <span className="text-lg font-bold text-primary">${hospital.pricing.surgery}</span>
+                    <span className="text-lg font-bold text-primary">₹{hospital.pricing.surgery}</span>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground mt-4">

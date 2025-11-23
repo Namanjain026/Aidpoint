@@ -603,7 +603,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
-import { Menu, X, User, LogOut, HeartHandshake, Bell, Search, MessageSquare, Settings, HelpCircle } from "lucide-react";
+import { Menu, X, User, LogOut, Bell, Search, MessageSquare, Settings, HelpCircle } from "lucide-react";
+import handshakeImg from '@/assets/handshake.svg';
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   DropdownMenu,
@@ -656,7 +657,7 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 ${
       isScrolled 
         ? 'backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 shadow-lg border-b border-blue-100 dark:border-gray-700' 
         : 'backdrop-blur-xl bg-white/60 dark:bg-gray-900/60'
@@ -671,8 +672,8 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-3 group transition-all duration-300 hover:scale-105">
               <div className="relative">
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-xl">
-                  <HeartHandshake className="h-6 w-6 text-white" />
+                <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-xl flex items-center justify-center">
+                  <img src={handshakeImg} alt="Handshake" className="h-6 w-6 object-contain" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-400 rounded-full animate-pulse" />
               </div>

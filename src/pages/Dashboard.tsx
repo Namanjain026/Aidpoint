@@ -251,7 +251,7 @@ const Dashboard = () => {
                             />
                           </div>
                           <div>
-                            <Label htmlFor="consultationFee">Consultation Fee ($)</Label>
+                            <Label htmlFor="consultationFee">Consultation Fee (₹)</Label>
                             <Input
                               id="consultationFee"
                               type="number"
@@ -302,7 +302,7 @@ const Dashboard = () => {
                         <div>
                           <h4 className="font-semibold">{doctor.name}</h4>
                           <p className="text-sm text-muted-foreground">{doctor.specialization}</p>
-                          <p className="text-sm text-muted-foreground">${doctor.consultationFee}/consultation</p>
+                          <p className="text-sm text-muted-foreground">₹{doctor.consultationFee}/consultation</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
@@ -347,8 +347,8 @@ const Dashboard = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <Label htmlFor="consultationPrice">General Consultation</Label>
-                    <div className="flex items-center mt-1">
-                      <span className="text-lg mr-2">$</span>
+                      <div className="flex items-center mt-1">
+                      <span className="text-lg mr-2">₹</span>
                       <Input
                         id="consultationPrice"
                         type="number"
@@ -360,8 +360,8 @@ const Dashboard = () => {
                   </div>
                   <div>
                     <Label htmlFor="emergencyPrice">Emergency Visit</Label>
-                    <div className="flex items-center mt-1">
-                      <span className="text-lg mr-2">$</span>
+                      <div className="flex items-center mt-1">
+                      <span className="text-lg mr-2">₹</span>
                       <Input
                         id="emergencyPrice"
                         type="number"
@@ -373,8 +373,8 @@ const Dashboard = () => {
                   </div>
                   <div>
                     <Label htmlFor="surgeryPrice">Surgery (Starting from)</Label>
-                    <div className="flex items-center mt-1">
-                      <span className="text-lg mr-2">$</span>
+                      <div className="flex items-center mt-1">
+                      <span className="text-lg mr-2">₹</span>
                       <Input
                         id="surgeryPrice"
                         type="number"
@@ -419,7 +419,7 @@ const Dashboard = () => {
                             {appointment.status}
                           </Badge>
                         </TableCell>
-                        <TableCell>${appointment.fees}</TableCell>
+                        <TableCell>₹{appointment.fees}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

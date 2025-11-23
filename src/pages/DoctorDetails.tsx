@@ -151,9 +151,7 @@ const DoctorDetails = () => {
                 </p>
 
                 <div className="text-center md:text-left">
-                  <div className="text-2xl font-bold text-primary mb-2">
-                    ${doctor.consultationFee}
-                  </div>
+                  <div className="text-2xl font-bold text-primary mb-2">₹{doctor.consultationFee}</div>
                   <div className="text-sm text-muted-foreground mb-4">
                     Consultation Fee
                   </div>

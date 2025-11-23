@@ -139,10 +139,10 @@ const DoctorList = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="">Any Fee</SelectItem>
-            <SelectItem value="150">Up to $150</SelectItem>
-            <SelectItem value="200">Up to $200</SelectItem>
-            <SelectItem value="250">Up to $250</SelectItem>
-            <SelectItem value="300">Up to $300</SelectItem>
+            <SelectItem value="150">Up to ₹150</SelectItem>
+            <SelectItem value="200">Up to ₹200</SelectItem>
+            <SelectItem value="250">Up to ₹250</SelectItem>
+            <SelectItem value="300">Up to ₹300</SelectItem>
           </SelectContent>
         </Select>
       </div>

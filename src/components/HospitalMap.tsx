@@ -56,6 +56,9 @@ interface HospitalMapProps {
   hospitals: Pick<Hospital, 'id' | 'name' | 'lat' | 'lng' | 'city' | 'location' | 'rating'>[];
   userPosition?: LatLng | null;
   className?: string;
+  // flyToTarget may include an optional ts (timestamp) so repeated clicks with same coords
+  // still retrigger the fly-to effect.
+  flyToTarget?: (LatLng & { zoom?: number; ts?: number }) | null;
 }
 
 const FitBounds: React.FC<{
@@ -84,9 +87,26 @@ const FitBounds: React.FC<{
   return null;
 };
 
+const FlyTo: React.FC<{ target: LatLng & { zoom?: number; ts?: number } | null }> = ({ target }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!map || !target) return;
+    try {
+      const z = target.zoom ?? 13;
+      map.flyTo([target.lat, target.lng], z, { animate: true });
+    } catch (err) {
+      // fallback to setView
+      map.setView([target.lat, target.lng], target.zoom ?? 13);
+    }
+  }, [map, target?.lat, target?.lng, target?.zoom, target?.ts]);
+
+  return null;
+};
+
 const AnyMapContainer = MapContainer as unknown as React.ComponentType<any>;
 
-const HospitalMap: React.FC<HospitalMapProps> = ({ hospitals, userPosition, className }) => {
+const HospitalMap: React.FC<HospitalMapProps> = ({ hospitals, userPosition, className, flyToTarget }) => {
   const points = useMemo(() => {
     const arr: LatLng[] = hospitals.map((h) => ({ lat: h.lat, lng: h.lng }));
     if (userPosition) arr.push(userPosition);
@@ -107,6 +127,9 @@ const HospitalMap: React.FC<HospitalMapProps> = ({ hospitals, userPosition, clas
         minZoom={2}
         style={{ height: '100%', width: '100%', borderRadius: '0.75rem' }}
       >
+  {/* Optional fly-to target from parent */}
+  {flyToTarget && <FlyTo target={flyToTarget} />}
+
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           {...({ attribution: "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors" } as any)}

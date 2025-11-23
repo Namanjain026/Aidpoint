@@ -55,9 +55,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         </div>
 
         <div className="text-center">
-          <div className="text-lg font-semibold text-primary">
-            ${doctor.consultationFee}
-          </div>
+          <div className="text-lg font-semibold text-primary">₹{doctor.consultationFee}</div>
           <div className="text-xs text-muted-foreground">Consultation Fee</div>
         </div>
 

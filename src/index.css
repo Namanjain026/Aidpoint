@@ -130,6 +130,42 @@
   }
 }
 
+/* Ensure maps and map controls start below the fixed navbar */
+:root {
+  --navbar-height: 4rem; /* matches h-16 in navbar */
+  --navbar-extra: 12px; /* extra cushion so map controls don't peek under navbar */
+  --navbar-offset: calc(var(--navbar-height) + var(--navbar-extra));
+}
+
+/* Leaflet places controls in absolute .leaflet-top; move them below the navbar */
+.leaflet-top {
+  top: var(--navbar-offset) !important;
+}
+
+/* Give the map container padding so tiles don't peek under the navbar */
+.leaflet-container {
+  padding-top: var(--navbar-offset) !important;
+}
+
+/* On desktop/laptop view the navbar visually takes more space (and the fixed
+   navbar sits above maps). Increase offset for md+ screens so maps don't peek
+   under the navbar on larger viewports. Mobile uses the smaller value. */
+@media (min-width: 768px) {
+  :root {
+    --navbar-height: 5rem; /* match pt-20 used on pages */
+    --navbar-extra: 12px;
+    --navbar-offset: calc(var(--navbar-height) + var(--navbar-extra));
+  }
+
+  .leaflet-top {
+    top: var(--navbar-offset) !important;
+  }
+
+  .leaflet-container {
+    padding-top: var(--navbar-offset) !important;
+  }
+}
+
 /* Floating animations for medical elements */
 @keyframes float {
   0% {

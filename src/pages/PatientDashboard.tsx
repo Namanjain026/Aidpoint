@@ -854,7 +854,7 @@ const DoctorSearchTab = () => {
                 </div>
               </div>
               <p className="text-sm text-gray-600">{doc.hospital}</p>
-              <p className="text-sm font-medium text-blue-600 mt-1">${doc.fees} / visit</p>
+              <p className="text-sm font-medium text-blue-600 mt-1">₹{doc.fees} / visit</p>
             </div>
           ))}
         </div>
@@ -879,7 +879,7 @@ const DoctorSearchTab = () => {
                 <div><Label>Speciality</Label><p>{selectedDoctor.speciality}</p></div>
                 <div><Label>Hospital</Label><p>{selectedDoctor.hospital}</p></div>
                 <div><Label>Timings</Label><p>{selectedDoctor.timings}</p></div>
-                <div><Label>Consultation Fee</Label><p className="font-medium">${selectedDoctor.fees}</p></div>
+                <div><Label>Consultation Fee</Label><p className="font-medium">₹{selectedDoctor.fees}</p></div>
                 <div><Label>Experience</Label><p>{selectedDoctor.experience} years</p></div>
                 {selectedDoctor.phone && <div><Label>Phone</Label><p>{selectedDoctor.phone}</p></div>}
                 {selectedDoctor.address && <div><Label>Address</Label><p>{selectedDoctor.address}</p></div>}

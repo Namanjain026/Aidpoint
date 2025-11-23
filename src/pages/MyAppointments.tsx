@@ -765,7 +765,7 @@ useEffect(() => {
             <span className="font-medium">Reason:</span> {appointment.reason}
           </div>
           <div className="text-sm">
-            <span className="font-medium">Consultation Fee:</span> ${appointment.fees}
+            <span className="font-medium">Consultation Fee:</span> ₹{appointment.fees}
           </div>
         </div>
 
