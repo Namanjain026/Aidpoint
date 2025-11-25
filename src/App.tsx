@@ -467,6 +467,7 @@ import AppointmentsPage from "./pages/AppointmentsPage";
 import AccessDenied from "./pages/AccessDenied";
 import PrivateRoute from "@/components/PrivateRoute";
 import PageTransition from "@/components/PageTransition";
+import HospitalProfile from "./pages/HospitalProfile";
 
 const queryClient = new QueryClient();
 
@@ -494,6 +495,7 @@ const App = () => (
                       <Route path="/feedback-dashboard" element={<FeedbackDashboard />} /> {/* Developer dashboard */}
                       <Route path="/access-denied" element={<AccessDenied />} />
                       <Route path="/appointments" element={<AppointmentsPage />} />
+                      <Route path="/hospital-profile" element={<HospitalProfile />} />
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/login" element={<Login />} />
                       <Route path="/register" element={<Register />} />
