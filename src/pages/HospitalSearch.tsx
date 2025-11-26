@@ -567,8 +567,8 @@ const mockHospitals = [
     availableBeds: 48,
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800",
     phone: "+91-141-2547000",
-    lat: 26.8517,
-    lng: 75.8104,
+    lat: 26.847889,
+    lng: 75.804106,
     specializations: "Cardiology,Neurology,Orthopedics,Emergency",
     facilities: "ICU,Emergency,Radiology",
   },
@@ -582,8 +582,8 @@ const mockHospitals = [
     availableBeds: 156,
     image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800",
     phone: "+91-141-2560291",
-    lat: 26.9173,
-    lng: 75.7881,
+    lat: 26.8445, 
+    lng: 75.8355,
     specializations: "General,Surgery,Pediatrics",
     facilities: "Trauma,Blood Bank",
   },
@@ -597,8 +597,8 @@ const mockHospitals = [
     availableBeds: 22,
     image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800",
     phone: "+91-141-5155555",
-    lat: 26.8413,
-    lng: 75.8721,
+    lat: 26.8726, 
+    lng: 75.7483,
     specializations: "Cardiology,Cardiac Surgery",
     facilities: "CCU,Cath Lab",
   },
@@ -612,8 +612,8 @@ const mockHospitals = [
     availableBeds: 18,
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800",
     phone: "+91-141-5129000",
-    lat: 26.8721,
-    lng: 75.7644,
+    lat: 26.8039,
+    lng: 75.8070,
     specializations: "Orthopedics,Neurology,Oncology",
     facilities: "ICU,Dialysis",
   },
@@ -627,8 +627,8 @@ const mockHospitals = [
     availableBeds: 42,
     image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800",
     phone: "+91-141-5153000",
-    lat: 26.8764,
-    lng: 75.7752,
+    lat: 26.8039, 
+    lng: 75.8070,
     specializations: "Neurosurgery,Urology",
     facilities: "Cath Lab,MRI",
   },
@@ -642,8 +642,8 @@ const mockHospitals = [
     availableBeds: 28,
     image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800",
     phone: "+91-141-3060600",
-    lat: 26.8764,
-    lng: 75.8123,
+    lat: 26.8842, 
+    lng: 75.7934,
     specializations: "Joint Replacement,Spine",
     facilities: "Modular OT",
   },
@@ -657,8 +657,8 @@ const mockHospitals = [
     availableBeds: 35,
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800",
     phone: "+91-141-3988888",
-    lat: 26.9644,
-    lng: 75.8239,
+    lat: 26.9540, 
+    lng: 75.7929,
     specializations: "Gastroenterology,Nephrology",
     facilities: "Dialysis",
   },
@@ -672,8 +672,8 @@ const mockHospitals = [
     availableBeds: 24,
     image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800",
     phone: "+91-141-2520000",
-    lat: 26.8356,
-    lng: 75.8144,
+    lat: 26.8804, 
+    lng: 75.7983,
     specializations: "Oncology,Cancer Care",
     facilities: "Radiation",
   },
@@ -687,8 +687,8 @@ const mockHospitals = [
     availableBeds: 16,
     image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800",
     phone: "+91-141-3988888",
-    lat: 26.9621,
-    lng: 75.8267,
+    lat: 26.9605, 
+    lng: 75.7992,
     specializations: "Pediatrics,Neonatology",
     facilities: "NICU",
   },
@@ -702,8 +702,8 @@ const mockHospitals = [
     availableBeds: 52,
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800",
     phone: "+91-141-2771111",
-    lat: 26.8156,
-    lng: 75.8122,
+    lat: 26.7696, 
+    lng: 75.8629,
     specializations: "ENT,Ophthalmology",
     facilities: "OPD",
   },
@@ -715,7 +715,7 @@ const OpenStreetMap = ({
   userPosition,
 }: {
   hospitals: any[];
-  userPosition: { lat: number; lng: number };
+  userPosition: { lat: 26.8436, lng: 75.5653 };
 }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
@@ -745,7 +745,7 @@ const OpenStreetMap = ({
     const map = L.map(mapRef.current, {
       zoomControl: true,
       attributionControl: true,
-    }).setView([26.9124, 75.7873], 12);
+    }).setView([26.836694618610295, 75.65034245381638], 12);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "© OpenStreetMap contributors",
@@ -812,7 +812,7 @@ export default function HospitalSearch() {
   const navigate = useNavigate();
 
   const [filteredHospitals, setFilteredHospitals] = useState(mockHospitals);
-  const [userPosition] = useState({ lat: 26.9124, lng: 75.7873 });
+  const [userPosition] = useState({ lat: 26.836694618610295, lng: 75.65034245381638 });
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSpecialization, setSelectedSpecialization] = useState("all");
   const [sortBy, setSortBy] = useState("distance");
