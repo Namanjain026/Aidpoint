@@ -305,7 +305,7 @@
 //     }
 
 //     if (selectedSpecialization !== 'all') {
-//       results = results.filter((h) => 
+//       results = results.filter((h) =>
 //         h.specializations.some(s => s.toLowerCase().includes(selectedSpecialization.toLowerCase()))
 //       );
 //     }
@@ -347,7 +347,6 @@
 //   return (
 //     <div style={{ paddingTop: 'var(--navbar-height)' }} className="min-h-screen transition-all duration-500 bg-gradient-to-br from-blue-200 via-indigo-300 to-purple-300 p-4 md:p-8 relative overflow-x-hidden">
 //       <div className="max-w-7xl mx-auto">
-
 
 //         <div className="mb-8">
 //           <div className="relative z-0 h-[500px] w-full overflow-hidden rounded-2xl shadow-2xl bg-white">
@@ -467,7 +466,7 @@
 //                       <span className="text-xs">{hospital.phone}</span>
 //                     </div>
 //                   </div>
-                  
+
 //                   <div className="pt-2 border-t border-gray-100">
 //                     <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Specializations</p>
 //                     <div className="flex flex-wrap gap-1">
@@ -547,25 +546,177 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { MapPin, Search, Star, Bed, Phone, ArrowUpDown } from "lucide-react";
 
 // ────────────────────── MOCK DATA ──────────────────────
 const mockHospitals = [
-  { id: "1", name: "Fortis Escorts Hospital", location: "Malviya Nagar", city: "Jaipur", rating: 4.8, totalBeds: 525, availableBeds: 48, image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800", phone: "+91-141-2547000", lat: 26.8517, lng: 75.8104, specializations: "Cardiology,Neurology,Orthopedics,Emergency", facilities: "ICU,Emergency,Radiology" },
-  { id: "2", name: "SMS Hospital", location: "Near Statue Circle", city: "Jaipur", rating: 4.2, totalBeds: 2100, availableBeds: 156, image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800", phone: "+91-141-2560291", lat: 26.9173, lng: 75.7881, specializations: "General,Surgery,Pediatrics", facilities: "Trauma,Blood Bank" },
-  { id: "3", name: "Eternal Heart Care Centre", location: "Jagatpura", city: "Jaipur", rating: 4.7, totalBeds: 200, availableBeds: 22, image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800", phone: "+91-141-5155555", lat: 26.8413, lng: 75.8721, specializations: "Cardiology,Cardiac Surgery", facilities: "CCU,Cath Lab" },
-  { id: "4", name: "Apex Hospital", location: "Mansarovar", city: "Jaipur", rating: 4.6, totalBeds: 150, availableBeds: 18, image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800", phone: "+91-141-5129000", lat: 26.8721, lng: 75.7644, specializations: "Orthopedics,Neurology,Oncology", facilities: "ICU,Dialysis" },
-  { id: "5", name: "Narayana Multispeciality Hospital", location: "Pratap Nagar", city: "Jaipur", rating: 4.5, totalBeds: 350, availableBeds: 42, image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800", phone: "+91-141-5153000", lat: 26.8764, lng: 75.7752, specializations: "Neurosurgery,Urology", facilities: "Cath Lab,MRI" },
-  { id: "6", name: "CK Birla Hospital", location: "Tonk Road", city: "Jaipur", rating: 4.7, totalBeds: 200, availableBeds: 28, image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800", phone: "+91-141-3060600", lat: 26.8764, lng: 75.8123, specializations: "Joint Replacement,Spine", facilities: "Modular OT" },
-  { id: "7", name: "Manipal Hospital", location: "Vidhyadhar Nagar", city: "Jaipur", rating: 4.6, totalBeds: 300, availableBeds: 35, image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800", phone: "+91-141-3988888", lat: 26.9644, lng: 75.8239, specializations: "Gastroenterology,Nephrology", facilities: "Dialysis" },
-  { id: "8", name: "Rukmani Birla Hospital", location: "Gopalpura Bypass", city: "Jaipur", rating: 4.5, totalBeds: 180, availableBeds: 24, image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800", phone: "+91-141-2520000", lat: 26.8356, lng: 75.8144, specializations: "Oncology,Cancer Care", facilities: "Radiation" },
-  { id: "9", name: "Paras JK Hospital", location: "Vidhyadhar Nagar", city: "Jaipur", rating: 4.4, totalBeds: 120, availableBeds: 16, image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800", phone: "+91-141-3988888", lat: 26.9621, lng: 75.8267, specializations: "Pediatrics,Neonatology", facilities: "NICU" },
-  { id: "10", name: "Mahatma Gandhi Hospital", location: "Sitapura", city: "Jaipur", rating: 4.3, totalBeds: 450, availableBeds: 52, image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800", phone: "+91-141-2771111", lat: 26.8156, lng: 75.8122, specializations: "ENT,Ophthalmology", facilities: "OPD" },
+  {
+    id: "1",
+    name: "Fortis Escorts Hospital",
+    location: "Malviya Nagar",
+    city: "Jaipur",
+    rating: 4.8,
+    totalBeds: 525,
+    availableBeds: 48,
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800",
+    phone: "+91-141-2547000",
+    lat: 26.8517,
+    lng: 75.8104,
+    specializations: "Cardiology,Neurology,Orthopedics,Emergency",
+    facilities: "ICU,Emergency,Radiology",
+  },
+  {
+    id: "2",
+    name: "SMS Hospital",
+    location: "Near Statue Circle",
+    city: "Jaipur",
+    rating: 4.2,
+    totalBeds: 2100,
+    availableBeds: 156,
+    image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800",
+    phone: "+91-141-2560291",
+    lat: 26.9173,
+    lng: 75.7881,
+    specializations: "General,Surgery,Pediatrics",
+    facilities: "Trauma,Blood Bank",
+  },
+  {
+    id: "3",
+    name: "Eternal Heart Care Centre",
+    location: "Jagatpura",
+    city: "Jaipur",
+    rating: 4.7,
+    totalBeds: 200,
+    availableBeds: 22,
+    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800",
+    phone: "+91-141-5155555",
+    lat: 26.8413,
+    lng: 75.8721,
+    specializations: "Cardiology,Cardiac Surgery",
+    facilities: "CCU,Cath Lab",
+  },
+  {
+    id: "4",
+    name: "Apex Hospital",
+    location: "Mansarovar",
+    city: "Jaipur",
+    rating: 4.6,
+    totalBeds: 150,
+    availableBeds: 18,
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800",
+    phone: "+91-141-5129000",
+    lat: 26.8721,
+    lng: 75.7644,
+    specializations: "Orthopedics,Neurology,Oncology",
+    facilities: "ICU,Dialysis",
+  },
+  {
+    id: "5",
+    name: "Narayana Multispeciality Hospital",
+    location: "Pratap Nagar",
+    city: "Jaipur",
+    rating: 4.5,
+    totalBeds: 350,
+    availableBeds: 42,
+    image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800",
+    phone: "+91-141-5153000",
+    lat: 26.8764,
+    lng: 75.7752,
+    specializations: "Neurosurgery,Urology",
+    facilities: "Cath Lab,MRI",
+  },
+  {
+    id: "6",
+    name: "CK Birla Hospital",
+    location: "Tonk Road",
+    city: "Jaipur",
+    rating: 4.7,
+    totalBeds: 200,
+    availableBeds: 28,
+    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800",
+    phone: "+91-141-3060600",
+    lat: 26.8764,
+    lng: 75.8123,
+    specializations: "Joint Replacement,Spine",
+    facilities: "Modular OT",
+  },
+  {
+    id: "7",
+    name: "Manipal Hospital",
+    location: "Vidhyadhar Nagar",
+    city: "Jaipur",
+    rating: 4.6,
+    totalBeds: 300,
+    availableBeds: 35,
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800",
+    phone: "+91-141-3988888",
+    lat: 26.9644,
+    lng: 75.8239,
+    specializations: "Gastroenterology,Nephrology",
+    facilities: "Dialysis",
+  },
+  {
+    id: "8",
+    name: "Rukmani Birla Hospital",
+    location: "Gopalpura Bypass",
+    city: "Jaipur",
+    rating: 4.5,
+    totalBeds: 180,
+    availableBeds: 24,
+    image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800",
+    phone: "+91-141-2520000",
+    lat: 26.8356,
+    lng: 75.8144,
+    specializations: "Oncology,Cancer Care",
+    facilities: "Radiation",
+  },
+  {
+    id: "9",
+    name: "Paras JK Hospital",
+    location: "Vidhyadhar Nagar",
+    city: "Jaipur",
+    rating: 4.4,
+    totalBeds: 120,
+    availableBeds: 16,
+    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800",
+    phone: "+91-141-3988888",
+    lat: 26.9621,
+    lng: 75.8267,
+    specializations: "Pediatrics,Neonatology",
+    facilities: "NICU",
+  },
+  {
+    id: "10",
+    name: "Mahatma Gandhi Hospital",
+    location: "Sitapura",
+    city: "Jaipur",
+    rating: 4.3,
+    totalBeds: 450,
+    availableBeds: 52,
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800",
+    phone: "+91-141-2771111",
+    lat: 26.8156,
+    lng: 75.8122,
+    specializations: "ENT,Ophthalmology",
+    facilities: "OPD",
+  },
 ];
 
 // ────────────────────── MAP COMPONENT ──────────────────────
-const OpenStreetMap = ({ hospitals, userPosition }: { hospitals: any[]; userPosition: { lat: number; lng: number } }) => {
+const OpenStreetMap = ({
+  hospitals,
+  userPosition,
+}: {
+  hospitals: any[];
+  userPosition: { lat: number; lng: number };
+}) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const [L, setL] = useState<any>(null);
@@ -593,9 +744,9 @@ const OpenStreetMap = ({ hospitals, userPosition }: { hospitals: any[]; userPosi
 
     const map = L.map(mapRef.current, {
       zoomControl: true,
-      attributionControl: true
+      attributionControl: true,
     }).setView([26.9124, 75.7873], 12);
-    
+
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "© OpenStreetMap contributors",
       maxZoom: 19,
@@ -622,12 +773,12 @@ const OpenStreetMap = ({ hospitals, userPosition }: { hospitals: any[]; userPosi
 
     if (userPosition) {
       const userIcon = L.divIcon({
-        className: 'custom-user-marker',
+        className: "custom-user-marker",
         html: '<div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"></div>',
         iconSize: [20, 20],
-        iconAnchor: [10, 10]
+        iconAnchor: [10, 10],
       });
-      
+
       L.marker([userPosition.lat, userPosition.lng], { icon: userIcon })
         .addTo(mapInstanceRef.current)
         .bindPopup("<strong>Your Location</strong>");
@@ -636,20 +787,24 @@ const OpenStreetMap = ({ hospitals, userPosition }: { hospitals: any[]; userPosi
     hospitals.forEach((h) => {
       if (h.lat && h.lng) {
         const hospitalIcon = L.divIcon({
-          className: 'custom-hospital-marker',
+          className: "custom-hospital-marker",
           html: '<div style="background: #dc2626; width: 28px; height: 28px; border-radius: 50%; border: 3px solid white; box-shadow: 0 3px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 18px;">🏥</div>',
           iconSize: [28, 28],
-          iconAnchor: [14, 14]
+          iconAnchor: [14, 14],
         });
-        
+
         L.marker([h.lat, h.lng], { icon: hospitalIcon })
           .addTo(mapInstanceRef.current)
-          .bindPopup(`<div style="min-width: 200px;"><strong style="font-size: 14px;">${h.name}</strong><br><span style="color: #666; font-size: 12px;">${h.location}</span><br><span style="color: #059669; font-weight: 600; font-size: 12px;">⭐ ${h.rating} | 🛏️ ${h.availableBeds} beds</span></div>`);
+          .bindPopup(
+            `<div style="min-width: 200px;"><strong style="font-size: 14px;">${h.name}</strong><br><span style="color: #666; font-size: 12px;">${h.location}</span><br><span style="color: #059669; font-weight: 600; font-size: 12px;">⭐ ${h.rating} | 🛏️ ${h.availableBeds} beds</span></div>`
+          );
       }
     });
   }, [L, hospitals, userPosition]);
 
-  return <div ref={mapRef} className="w-full h-full" style={{ minHeight: '100%' }} />;
+  return (
+    <div ref={mapRef} className="w-full h-full" style={{ minHeight: "100%" }} />
+  );
 };
 
 // ────────────────────── MAIN PAGE ──────────────────────
@@ -676,18 +831,31 @@ export default function HospitalSearch() {
 
     if (selectedSpecialization !== "all") {
       results = results.filter((h) =>
-        h.specializations.toLowerCase().includes(selectedSpecialization.toLowerCase())
+        h.specializations
+          .toLowerCase()
+          .includes(selectedSpecialization.toLowerCase())
       );
     }
 
+    // Sort on the filtered copy
     if (sortBy === "rating") {
-      results = results.sort((a, b) => b.rating - a.rating);
+      results = [...results].sort((a, b) => b.rating - a.rating);
     } else if (sortBy === "beds") {
-      results = results.sort((a, b) => b.availableBeds - a.availableBeds);
+      results = [...results].sort((a, b) => b.availableBeds - a.availableBeds);
     } else {
-      results = results.sort((a, b) => {
-        const distA = calculateDistance(userPosition.lat, userPosition.lng, a.lat, a.lng);
-        const distB = calculateDistance(userPosition.lat, userPosition.lng, b.lat, b.lng);
+      results = [...results].sort((a, b) => {
+        const distA = calculateDistance(
+          userPosition.lat,
+          userPosition.lng,
+          a.lat,
+          a.lng
+        );
+        const distB = calculateDistance(
+          userPosition.lat,
+          userPosition.lng,
+          b.lat,
+          b.lng
+        );
         return distA - distB;
       });
     }
@@ -695,7 +863,12 @@ export default function HospitalSearch() {
     setFilteredHospitals(results);
   }, [searchQuery, selectedSpecialization, sortBy]);
 
-  const calculateDistance = (lat1: number, lng1: number, lat2: number, lng2: number) => {
+  const calculateDistance = (
+    lat1: number,
+    lng1: number,
+    lat2: number,
+    lng2: number
+  ) => {
     const R = 6371;
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLng = (lng2 - lng1) * (Math.PI / 180);
@@ -710,7 +883,11 @@ export default function HospitalSearch() {
   };
 
   const allSpecializations = Array.from(
-    new Set(mockHospitals.flatMap((h) => h.specializations.split(",")).map((s) => s.trim()))
+    new Set(
+      mockHospitals
+        .flatMap((h) => h.specializations.split(","))
+        .map((s) => s.trim())
+    )
   );
 
   const goToProfile = (hospital: any) => {
@@ -720,16 +897,20 @@ export default function HospitalSearch() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
       <div className="max-w-7xl mx-auto space-y-8">
-        
         <div className="text-center space-y-2 pt-6">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
             Find Healthcare Near You
           </h1>
-          <p className="text-gray-600 text-lg">Discover top-rated hospitals in Jaipur</p>
+          <p className="text-gray-600 text-lg">
+            Discover top-rated hospitals in Jaipur
+          </p>
         </div>
 
         <div className="relative w-full h-[500px] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200">
-          <OpenStreetMap hospitals={filteredHospitals} userPosition={userPosition} />
+          <OpenStreetMap
+            hospitals={filteredHospitals}
+            userPosition={userPosition}
+          />
         </div>
 
         <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
@@ -744,8 +925,11 @@ export default function HospitalSearch() {
                   className="pl-10 h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
                 />
               </div>
-              
-              <Select value={selectedSpecialization} onValueChange={setSelectedSpecialization}>
+
+              <Select
+                value={selectedSpecialization}
+                onValueChange={setSelectedSpecialization}
+              >
                 <SelectTrigger className="h-12 border-gray-200">
                   <SelectValue placeholder="All Specializations" />
                 </SelectTrigger>
@@ -776,11 +960,17 @@ export default function HospitalSearch() {
 
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-800">
-            {filteredHospitals.length} Hospital{filteredHospitals.length !== 1 && "s"} Found
+            {filteredHospitals.length} Hospital
+            {filteredHospitals.length !== 1 && "s"} Found
           </h2>
           <div className="text-sm text-gray-600">
-            Sorted by: <span className="font-semibold text-purple-600">
-              {sortBy === "distance" ? "Distance" : sortBy === "rating" ? "Rating" : "Available Beds"}
+            Sorted by:{" "}
+            <span className="font-semibold text-purple-600">
+              {sortBy === "distance"
+                ? "Distance"
+                : sortBy === "rating"
+                ? "Rating"
+                : "Available Beds"}
             </span>
           </div>
         </div>
@@ -789,7 +979,9 @@ export default function HospitalSearch() {
           {filteredHospitals.length === 0 ? (
             <div className="col-span-full text-center py-20">
               <Search className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-xl text-gray-600 font-medium">No hospitals found</p>
+              <p className="text-xl text-gray-600 font-medium">
+                No hospitals found
+              </p>
               <p className="text-gray-500 mt-2">Try adjusting your filters</p>
             </div>
           ) : (
@@ -800,10 +992,10 @@ export default function HospitalSearch() {
                 onClick={() => goToProfile(hospital)}
               >
                 <div className="relative h-52 overflow-hidden">
-                  <img 
-                    src={hospital.image} 
-                    alt={hospital.name} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                  <img
+                    src={hospital.image}
+                    alt={hospital.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-lg">
@@ -811,14 +1003,18 @@ export default function HospitalSearch() {
                     {hospital.rating}
                   </div>
                   <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-white font-bold text-lg drop-shadow-lg">{hospital.name}</h3>
+                    <h3 className="text-white font-bold text-lg drop-shadow-lg">
+                      {hospital.name}
+                    </h3>
                   </div>
                 </div>
-                
+
                 <CardContent className="p-5 space-y-4">
                   <div className="flex items-start gap-2 text-gray-600">
                     <MapPin className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm font-medium">{hospital.location}, {hospital.city}</span>
+                    <span className="text-sm font-medium">
+                      {hospital.location}, {hospital.city}
+                    </span>
                   </div>
 
                   <div className="flex items-center gap-2 text-gray-600">
@@ -828,11 +1024,17 @@ export default function HospitalSearch() {
 
                   <div className="pt-3 border-t border-gray-100">
                     <div className="flex flex-wrap gap-1.5">
-                      {hospital.specializations.split(",").slice(0, 3).map((spec: string, idx: number) => (
-                        <span key={idx} className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium">
-                          {spec.trim()}
-                        </span>
-                      ))}
+                      {hospital.specializations
+                        .split(",")
+                        .slice(0, 3)
+                        .map((spec: string, idx: number) => (
+                          <span
+                            key={idx}
+                            className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium"
+                          >
+                            {spec.trim()}
+                          </span>
+                        ))}
                       {hospital.specializations.split(",").length > 3 && (
                         <span className="px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
                           +{hospital.specializations.split(",").length - 3}
@@ -847,17 +1049,28 @@ export default function HospitalSearch() {
                         <Bed className="h-5 w-5 text-green-600" />
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500 font-medium">Available</p>
+                        <p className="text-xs text-gray-500 font-medium">
+                          Available
+                        </p>
                         <p className="text-xl font-bold text-green-600">
                           {hospital.availableBeds}
-                          <span className="text-sm text-gray-400 font-normal ml-0.5">beds</span>
+                          <span className="text-sm text-gray-400 font-normal ml-0.5">
+                            beds
+                          </span>
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-gray-500 font-medium">Distance</p>
+                      <p className="text-xs text-gray-500 font-medium">
+                        Distance
+                      </p>
                       <p className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                        {calculateDistance(userPosition.lat, userPosition.lng, hospital.lat, hospital.lng).toFixed(1)}
+                        {calculateDistance(
+                          userPosition.lat,
+                          userPosition.lng,
+                          hospital.lat,
+                          hospital.lng
+                        ).toFixed(1)}
                         <span className="text-sm"> km</span>
                       </p>
                     </div>
