@@ -468,6 +468,7 @@ import AccessDenied from "./pages/AccessDenied";
 import PrivateRoute from "@/components/PrivateRoute";
 import PageTransition from "@/components/PageTransition";
 import HospitalProfile from "./pages/HospitalProfile";
+import PublicHospitalProfile from "./pages/PublicHospitalProfile";
 
 const queryClient = new QueryClient();
 
@@ -499,6 +500,7 @@ const App = () => (
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/login" element={<Login />} />
                       <Route path="/register" element={<Register />} />
+                      <Route path="/hospital/:id" element={<PublicHospitalProfile />} />
 
                       {/* Protected Routes */}
                       <Route
