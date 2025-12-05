@@ -174,7 +174,7 @@ function useToast() {
         listeners.splice(index, 1);
       }
     };
-  }, [state]);
+  }, []); // changed: subscribe once (was [state])
 
   return {
     ...state,
@@ -184,3 +184,4 @@ function useToast() {
 }
 
 export { useToast, toast };
+export default useToast; // added default export
