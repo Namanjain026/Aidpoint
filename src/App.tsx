@@ -496,6 +496,7 @@ const App = () => (
                       <Route path="/feedback-dashboard" element={<FeedbackDashboard />} /> {/* Developer dashboard */}
                       <Route path="/access-denied" element={<AccessDenied />} />
                       <Route path="/appointments" element={<AppointmentsPage />} />
+                      <Route path="/book-appointments" element={<AppointmentsPage />} />
                       <Route path="/hospital-profile" element={<HospitalProfile />} />
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/login" element={<Login />} />
